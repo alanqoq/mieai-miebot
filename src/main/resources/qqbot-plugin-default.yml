@@ -1,0 +1,67 @@
+# AI 接口设置。链接只填写协议、域名和可选端口，插件会自动补全接口路径。
+api:
+  # 服务域名。不要填写 /v1、接口路径、查询参数或账号信息；自建服务可使用端口。
+  baseUrl: "https://api.openai.com"
+  # API 密钥。请在绑定配置中填写真实密钥，不要把真实密钥提交到版本库。
+  apiKey: ""
+  # 模型协议。openai-old 使用 /v1/chat/completions；openai-new 使用 /v1/responses。
+  protocol: "openai-old"
+  # 默认主模型名称。名称不能为空，也不能包含空白字符。
+  primaryModel: "gpt-4.1-mini"
+  # 单次 AI 请求超时秒数，范围 1-3600；超时会触发备用模型逻辑。
+  requestTimeoutSeconds: 120
+  # 备用模型名称。留空或与主模型相同表示不启用备用模型。
+  fallbackModel: ""
+  # 切换到备用模型后持续使用的分钟数，范围 1-525600。
+  fallbackDurationMinutes: 30
+
+# 群聊触发、提示词、关键词和上文设置。所有群键都填写 QQ 提供的 group_openid 字符串。
+chat:
+  # 全局随机聊天概率，单位为百分比，范围 0-100；未单独设置的群使用该值。
+  defaultProbability: 5
+  # 每群随机聊天概率，值范围 1-100。示例：{"group_openid": 15}。
+  groupProbabilities: {}
+  # 全局系统提示词。群没有单独提示词时使用该内容。
+  defaultSystemPrompt: "你是QQ群聊中的 AI 助手。请自然、简洁地参与聊天，不要声称看到了未提供的内容。"
+  # 每群系统提示词。示例：{"group_openid": "你是这个群的技术助手。"}。
+  groupSystemPrompts: {}
+  # 群管理员通过 /mieai prompt 设置提示词时允许的最大 Unicode 字符数。
+  promptMaxLength: 2000
+  # 群提示词超过上限时引用回复的内容；必须非空且不超过 4000 个 Unicode 字符。
+  promptTooLongReply: "当前群系统提示词超过允许长度，未保存。"
+  # 默认关键词，采用忽略大小写的子串匹配；群设置单独关键词后本字段在该群失效。
+  defaultKeyword: "mieai"
+  # 每群单独关键词。示例：{"group_openid": "小助手"}。
+  groupKeywords: {}
+  # 群管理员通过 /mieai keyword 设置关键词时允许的最大 Unicode 字符数。
+  keywordMaxLength: 64
+  # 群关键词超过上限时引用回复的内容；必须非空且不超过 4000 个 Unicode 字符。
+  keywordTooLongReply: "当前群关键词超过允许长度，未保存。"
+  # 禁用聊天的群 group_openid 列表。禁用后概率、@和关键词触发全部关闭，管理命令仍可用。
+  disabledGroups: []
+  # 是否允许受支持模型读取 SQLite 上下文中的 Base64 图片；图片入库不受该开关影响。
+  imageUnderstandingEnabled: false
+  # 每次请求最多联系的上文消息数，不包含当前触发消息；0 表示不使用上文。
+  maxContextMessages: 20
+
+# SQLite 历史和图片保留设置。数据库位于当前插件绑定的私有数据目录。
+storage:
+  # 单张图片转换为 Base64 后允许保存的最大字节数；0 表示不保存图片正文。
+  maxBase64ImageBytes: 10485760
+  # 全部群合计最多保存的消息数；0 表示不限制总量。
+  maxMessagesTotal: 200000
+  # 每群默认最多保存的消息数；0 表示不限制单群数量。
+  defaultMaxMessagesPerGroup: 20000
+  # 每群单独消息上限，覆盖默认单群值；0 表示该群不限制。示例：{"group_openid": 50000}。
+  groupMaxMessages: {}
+  # 一条消息最多保存的天数；0 表示不按时间删除。
+  maxMessageAgeDays: 30
+  # 超限时每轮删除的最旧消息数量；删除后仍超限会继续执行。
+  cleanupDeleteBatchSize: 1000
+  # 每天按服务器本地时区执行清理的时间，严格使用 24 小时制 HH:mm。
+  cleanupTime: "04:00"
+
+# 群内 AI 任务队列设置。不同群并行，同一个群严格按接收顺序串行。
+queue:
+  # 每群最多等待处理的触发任务数量，不包含正在执行的任务。
+  maxPendingPerGroup: 20

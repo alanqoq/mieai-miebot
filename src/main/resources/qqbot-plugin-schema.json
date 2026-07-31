@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "api": {
+      "type": "object",
+      "properties": {
+        "baseUrl": { "type": "string", "minLength": 8, "maxLength": 2048, "pattern": "^https?://[^/\\s]+/?$" },
+        "apiKey": { "type": "string", "maxLength": 8192 },
+        "protocol": { "type": "string", "enum": ["openai-old", "openai-new"] },
+        "primaryModel": { "type": "string", "minLength": 1, "maxLength": 255, "pattern": "^\\S+$" },
+        "requestTimeoutSeconds": { "type": "integer", "minimum": 1, "maximum": 3600 },
+        "fallbackModel": { "type": "string", "maxLength": 255 },
+        "fallbackDurationMinutes": { "type": "integer", "minimum": 1, "maximum": 525600 }
+      },
+      "required": ["baseUrl", "apiKey", "protocol", "primaryModel", "requestTimeoutSeconds", "fallbackModel", "fallbackDurationMinutes"],
+      "additionalProperties": false
+    },
+    "chat": {
+      "type": "object",
+      "properties": {
+        "defaultProbability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "groupProbabilities": { "type": "object", "additionalProperties": true },
+        "defaultSystemPrompt": { "type": "string", "minLength": 1, "maxLength": 100000 },
+        "groupSystemPrompts": { "type": "object", "additionalProperties": true },
+        "promptMaxLength": { "type": "integer", "minimum": 1, "maximum": 100000 },
+        "promptTooLongReply": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "defaultKeyword": { "type": "string", "minLength": 1, "maxLength": 10000 },
+        "groupKeywords": { "type": "object", "additionalProperties": true },
+        "keywordMaxLength": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "keywordTooLongReply": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "disabledGroups": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 255, "pattern": "^\\S+$" },
+          "maxItems": 100000
+        },
+        "imageUnderstandingEnabled": { "type": "boolean" },
+        "maxContextMessages": { "type": "integer", "minimum": 0, "maximum": 10000 }
+      },
+      "required": ["defaultProbability", "groupProbabilities", "defaultSystemPrompt", "groupSystemPrompts", "promptMaxLength", "promptTooLongReply", "defaultKeyword", "groupKeywords", "keywordMaxLength", "keywordTooLongReply", "disabledGroups", "imageUnderstandingEnabled", "maxContextMessages"],
+      "additionalProperties": false
+    },
+    "storage": {
+      "type": "object",
+      "properties": {
+        "maxBase64ImageBytes": { "type": "integer", "minimum": 0, "maximum": 9223372036854775807 },
+        "maxMessagesTotal": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
+        "defaultMaxMessagesPerGroup": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
+        "groupMaxMessages": { "type": "object", "additionalProperties": true },
+        "maxMessageAgeDays": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
+        "cleanupDeleteBatchSize": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+        "cleanupTime": { "type": "string", "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$" }
+      },
+      "required": ["maxBase64ImageBytes", "maxMessagesTotal", "defaultMaxMessagesPerGroup", "groupMaxMessages", "maxMessageAgeDays", "cleanupDeleteBatchSize", "cleanupTime"],
+      "additionalProperties": false
+    },
+    "queue": {
+      "type": "object",
+      "properties": {
+        "maxPendingPerGroup": { "type": "integer", "minimum": 1, "maximum": 2147483647 }
+      },
+      "required": ["maxPendingPerGroup"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["api", "chat", "storage", "queue"],
+  "additionalProperties": false
+}
