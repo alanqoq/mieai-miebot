@@ -1,4 +1,5 @@
 import org.gradle.api.file.DuplicatesStrategy
+import org.gradle.jvm.tasks.Jar
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -7,7 +8,7 @@ plugins {
 }
 
 group = "com.mieai.bot"
-version = providers.gradleProperty("pluginVersion").orElse("0.0.1").get()
+version = providers.gradleProperty("pluginVersion").orElse("0.0.2").get()
 
 java {
     toolchain {
@@ -20,6 +21,7 @@ val qqbotSdkVersion = providers.gradleProperty("qqbotSdkVersion").orElse("1.0.3"
 val qqbotSdkRepository = providers.gradleProperty("qqbotSdkRepository")
     .orElse(providers.environmentVariable("QQBOT_SDK_REPOSITORY"))
     .orElse("../mirai-qqbot/build/plugin-sdk/repository")
+val sqliteJdbcVersion = "3.49.1.0"
 
 repositories {
     maven { url = uri(qqbotSdkRepository.get()) }
@@ -34,11 +36,16 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.3")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.3")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.3")
-    implementation("org.xerial:sqlite-jdbc:3.49.1.0")
+
+    // MieBot provides this driver through PF4J's application parent classloader.
+    // A second copy in the plugin JAR would try to load sqlitejdbc native code twice.
+    compileOnly("org.xerial:sqlite-jdbc:$sqliteJdbcVersion")
 
     testImplementation("com.mieai.qqbot:qqbot-plugin-testkit:${qqbotSdkVersion.get()}")
+    testImplementation("org.pf4j:pf4j:3.13.0")
     testImplementation(kotlin("test-junit5"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
+    testRuntimeOnly("org.xerial:sqlite-jdbc:$sqliteJdbcVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.2")
 }
 
@@ -50,8 +57,33 @@ tasks.withType<KotlinCompile>().configureEach {
     }
 }
 
+val pluginJar = tasks.named<Jar>("jar")
+
 tasks.test {
     useJUnitPlatform()
+    exclude("**/Pf4jSqliteParentLoaderIntegrationTest.class")
+}
+
+val pf4jSqliteTest by tasks.registering(Test::class) {
+    description = "Verifies SQLite parent-classloader reuse through the packaged PF4J plugin"
+    group = "verification"
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform()
+    include("**/Pf4jSqliteParentLoaderIntegrationTest.class")
+    dependsOn(pluginJar)
+    dependsOn(tasks.testClasses)
+    shouldRunAfter(tasks.test)
+    doFirst {
+        systemProperty(
+            "mieai.plugin.jar",
+            pluginJar.get().archiveFile.get().asFile.absolutePath,
+        )
+    }
+}
+
+tasks.check {
+    dependsOn(pf4jSqliteTest)
 }
 
 tasks.jar {

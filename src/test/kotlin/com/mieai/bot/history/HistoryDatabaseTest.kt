@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.nio.file.Path
+import java.time.Clock
 import java.time.Instant
+import java.time.ZoneOffset
 import java.util.UUID
 
 class HistoryDatabaseTest {
@@ -68,7 +70,8 @@ class HistoryDatabaseTest {
 
     @Test
     fun failedOrOversizedPureImageIsDeletedUnlessItCarriesAReference() {
-        HistoryDatabase(temporaryDirectory.resolve("history.db")).use { database ->
+        val clock = Clock.fixed(Instant.EPOCH, ZoneOffset.UTC)
+        HistoryDatabase(temporaryDirectory.resolve("history.db"), clock).use { database ->
             val plainImage = database.insertInbound(
                 NewInboundMessage(
                     UUID.randomUUID(), "group", "member", "image-1", null, null, null, Instant.EPOCH,
