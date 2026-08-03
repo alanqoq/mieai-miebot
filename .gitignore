@@ -2,8 +2,8 @@
 build/
 out/
 .idea/
+.codex/
 *.iml
 *.db
 *.db-shm
 *.db-wal
-

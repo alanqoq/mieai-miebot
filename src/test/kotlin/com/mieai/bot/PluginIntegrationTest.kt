@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.time.Instant
+import java.sql.DriverManager
 import java.util.UUID
 import java.util.ServiceLoader
 
@@ -67,6 +68,45 @@ class PluginIntegrationTest {
         }
     }
 
+    @Test
+    fun genericGroupMessageWithCurrentBotMentionStartsChat() {
+        val config = MieAiBotConfig.defaults().copy(
+            chat = MieAiBotConfig.defaults().chat.copy(defaultProbability = 0),
+        )
+        val yaml = MieAiConfigCodec.render(config)
+        PluginTestContext("mieai-bot-at-${UUID.randomUUID()}", yaml, "config.yml").use { fixture ->
+            val plugin = MieAiBotPluginFactory().create(fixture.context)
+            plugin.start()
+            try {
+                val eventId = UUID.randomUUID()
+                val event = PluginEvent(
+                    eventId,
+                    fixture.context.base.botId,
+                    fixture.context.base.environment,
+                    "GROUP_MESSAGE_CREATE",
+                    "platform-event-${eventId.toString().take(8)}",
+                    """{"d":{"attachments":[],"mentions":[{"is_you":true}]}}""",
+                    Instant.now(),
+                    InboundMessage(
+                        MessageTarget(MessageTargetType.GROUP, "group-openid"),
+                        "member-message-id",
+                        "reply-event-id",
+                        "member-openid",
+                        "ordinary prompt",
+                        null,
+                        GroupMemberRole.MEMBER,
+                    ),
+                )
+
+                fixture.events.emit(event).toCompletableFuture().join()
+
+                await { chatTaskCount(fixture) == 1 }
+            } finally {
+                plugin.stop()
+            }
+        }
+    }
+
     private fun await(condition: () -> Boolean) {
         val deadline = System.nanoTime() + 5_000_000_000L
         while (!condition()) {
@@ -74,4 +114,14 @@ class PluginIntegrationTest {
             Thread.sleep(20)
         }
     }
+
+    private fun chatTaskCount(fixture: PluginTestContext): Int =
+        DriverManager.getConnection("jdbc:sqlite:${fixture.context.base.dataDirectory.resolve("history.db")}").use { connection ->
+            connection.createStatement().use { statement ->
+                statement.executeQuery("SELECT COUNT(*) FROM chat_tasks").use { rows ->
+                    check(rows.next())
+                    rows.getInt(1)
+                }
+            }
+        }
 }

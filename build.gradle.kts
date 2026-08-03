@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.mieai.bot"
-version = providers.gradleProperty("pluginVersion").orElse("0.0.2").get()
+version = providers.gradleProperty("pluginVersion").orElse("0.0.4").get()
 
 java {
     toolchain {
@@ -20,7 +20,7 @@ java {
 val qqbotSdkVersion = providers.gradleProperty("qqbotSdkVersion").orElse("1.0.3")
 val qqbotSdkRepository = providers.gradleProperty("qqbotSdkRepository")
     .orElse(providers.environmentVariable("QQBOT_SDK_REPOSITORY"))
-    .orElse("../mirai-qqbot/build/plugin-sdk/repository")
+    .orElse("../miebot/build/plugin-sdk/repository")
 val sqliteJdbcVersion = "3.49.1.0"
 
 repositories {

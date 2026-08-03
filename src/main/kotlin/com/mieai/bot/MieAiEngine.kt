@@ -12,6 +12,7 @@ import com.mieai.bot.config.MieAiConfigStore
 import com.mieai.bot.delivery.DeliveryTracker
 import com.mieai.bot.delivery.OutboundService
 import com.mieai.bot.event.AttachmentParser
+import com.mieai.bot.event.BotMentionParser
 import com.mieai.bot.event.TriggerDecider
 import com.mieai.bot.history.ChatTaskRecord
 import com.mieai.bot.history.ChatTaskStatus
@@ -66,6 +67,7 @@ class MieAiEngine(
     private val failover = ModelFailoverManager(warning = ::warn)
     private val commandService = CommandService(configStore, database)
     private val attachments = AttachmentParser(json)
+    private val mentions = BotMentionParser(json)
     private val queue = GroupChatQueue(database, ::processChatTask, ::warn)
     private val deliveryTracker = DeliveryTracker(context.base.messageSender, database, scheduler, ::warn)
     private val outbound = OutboundService(context.base.messageSender, database, deliveryTracker::track)
@@ -102,6 +104,7 @@ class MieAiEngine(
         val groupId = inbound.replyTarget.id
         val text = inbound.content?.trim()?.ifBlank { null }
         val imageAttachments = attachments.parse(event.rawPayload)
+        val isBotMentioned = mentions.isBotMentioned(event.rawPayload)
         if (text == null && imageAttachments.isEmpty() && inbound.referencedMessageId == null) return
         val rowId = database.insertInbound(
             NewInboundMessage(
@@ -136,6 +139,7 @@ class MieAiEngine(
                 text,
                 imageAttachments.isNotEmpty(),
                 config.chat,
+                isBotMentioned,
                 randomPercent,
             )
         ) return
@@ -256,6 +260,15 @@ class MieAiEngine(
     }
 
     private fun warn(message: String, failure: Throwable?) {
+        if (failure is LinkageError) {
+            val detail = generateSequence<Throwable>(failure) { it.cause }
+                .take(4)
+                .joinToString(" <- ") {
+                    "${it.javaClass.name}: ${it.message.orEmpty().replace(Regex("[\\r\\n]+"), " ").take(500)}"
+                }
+            context.base.logger.warn("$message ($detail)")
+            return
+        }
         val suffix = failure?.let { " (${it.javaClass.simpleName})" }.orEmpty()
         context.base.logger.warn(message + suffix)
     }

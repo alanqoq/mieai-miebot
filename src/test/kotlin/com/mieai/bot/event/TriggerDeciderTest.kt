@@ -13,6 +13,17 @@ class TriggerDeciderTest {
         val chat = MieAiBotConfig.defaults().chat.copy(defaultProbability = 0)
 
         assertTrue(TriggerDecider.shouldTrigger("GROUP_AT_MESSAGE_CREATE", "group", null, false, chat, random))
+        assertTrue(
+            TriggerDecider.shouldTrigger(
+                "GROUP_MESSAGE_CREATE",
+                "group",
+                "ordinary prompt",
+                false,
+                chat,
+                true,
+                random,
+            ),
+        )
         assertTrue(TriggerDecider.shouldTrigger("GROUP_MESSAGE_CREATE", "group", "hello MIEAI", false, chat, random))
         assertTrue(randomCalls == 0)
     }

@@ -48,8 +48,8 @@ class OpenAiChatProvider(
         val headers = linkedMapOf(
             "Content-Type" to "application/json",
             "Accept" to "application/json",
+            "Authorization" to "Bearer ${request.apiKey}",
         )
-        if (mimo) headers["api-key"] = request.apiKey else headers["Authorization"] = "Bearer ${request.apiKey}"
 
         val timeout = Duration.ofSeconds(request.timeoutSeconds.coerceAtLeast(1))
         val outbound = PluginHttpRequest(

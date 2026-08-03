@@ -49,7 +49,7 @@ class OpenAiChatProviderTest {
     }
 
     @Test
-    fun everyMimoV25PrefixForcesChatCompletionsApiKeyAndMultipleBase64Images() {
+    fun everyMimoV25PrefixUsesOpenAiBearerChatCompletionsAndMultipleBase64Images() {
         val http = FakePluginHttpClient {
             PluginHttpResponse(200, emptyMap(), """{"choices":[{"message":{"content":"seen"}}]}""".toByteArray())
         }
@@ -71,8 +71,8 @@ class OpenAiChatProviderTest {
 
         val sent = http.requests().single()
         assertEquals("https://example.test/v1/chat/completions", sent.uri.toString())
-        assertEquals("secret", sent.headers["api-key"])
-        assertEquals(null, sent.headers["Authorization"])
+        assertEquals("Bearer secret", sent.headers["Authorization"])
+        assertEquals(null, sent.headers["api-key"])
         val content = json.readTree(sent.body).path("messages").path(1).path("content")
         assertEquals(3, content.size())
         assertEquals("data:image/png;base64,YWJj", content.path(1).path("image_url").path("url").asText())

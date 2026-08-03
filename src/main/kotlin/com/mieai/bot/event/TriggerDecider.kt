@@ -10,10 +10,29 @@ object TriggerDecider {
         hasImages: Boolean,
         config: ChatConfig,
         randomPercent: () -> Int,
+    ): Boolean = shouldTrigger(
+        eventType,
+        groupId,
+        text,
+        hasImages,
+        config,
+        isBotMentioned = false,
+        randomPercent = randomPercent,
+    )
+
+    fun shouldTrigger(
+        eventType: String,
+        groupId: String,
+        text: String?,
+        hasImages: Boolean,
+        config: ChatConfig,
+        isBotMentioned: Boolean,
+        randomPercent: () -> Int,
     ): Boolean {
         if (!config.isChatEnabled(groupId)) return false
         if (eventType.equals(GROUP_AT_MESSAGE_CREATE, ignoreCase = true)) return true
         if (!eventType.equals(GROUP_MESSAGE_CREATE, ignoreCase = true)) return false
+        if (isBotMentioned) return true
         val keyword = config.keywordFor(groupId)
         if (!text.isNullOrEmpty() && text.contains(keyword, ignoreCase = true)) return true
         if (text.isNullOrBlank() && !hasImages) return false

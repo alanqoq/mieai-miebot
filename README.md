@@ -1,13 +1,13 @@
 # mieai-bot
 
-`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.2`，要求 Java 21、MieBot `1.0.3` 和 Plugin API `3.2.0`。
+`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.4`，要求 Java 21、MieBot `1.0.3` 和 Plugin API `3.2.0`。
 
 ## 构建
 
 先在 MieBot 根项目生成本地插件 SDK：
 
 ```powershell
-cd D:\开发文档\mirai-qqbot
+cd D:\开发文档\miebot
 .\gradlew.bat pluginSdkRepository --no-configuration-cache
 ```
 
@@ -19,7 +19,7 @@ $env:JAVA_HOME='E:\JAVA\dragonwell-21.0.11.0.11+10-GA'
 .\gradlew.bat clean test jar --no-configuration-cache
 ```
 
-输出文件为 `build/libs/mieai-bot-0.0.2.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
+输出文件为 `build/libs/mieai-bot-0.0.4.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
 
 ## 安装
 
@@ -55,6 +55,6 @@ $env:JAVA_HOME='E:\JAVA\dragonwell-21.0.11.0.11+10-GA'
 - 所有 AI 回复均显式引用触发消息。
 - 同一群的 AI 任务严格串行，不同群并行；队列满时会引用提示。
 - 引用消息只沿 SQLite 中的引用链取上文，不足时不会使用普通群历史补足；未引用消息按该群此前消息取上文。
-- 图片链接至少等待 3 秒后下载并以 Base64 保存。启用图片理解后，所有以 `mimo-v2.5` 开头的模型使用 Chat Completions、`api-key` 和 Base64 多图输入。
+- 图片链接至少等待 3 秒后下载并以 Base64 保存。启用图片理解后，所有以 `mimo-v2.5` 开头的模型使用 OpenAI 兼容的 Chat Completions、`Authorization: Bearer` 和 Base64 多图输入。
 - 主模型超时、网络错误、非成功 HTTP、响应解析错误或空回复时，会用备用模型重试；备用窗口到期后的下一条消息重新探测主模型。
 - SQLite 按配置的本地时间清理过期消息、单群超量消息和全库超量消息。
