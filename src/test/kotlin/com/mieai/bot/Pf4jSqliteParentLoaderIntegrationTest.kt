@@ -70,7 +70,7 @@ class Pf4jSqliteParentLoaderIntegrationTest {
             "mieai-bot",
             "MieAI Bot",
             "com.mieai.qqbot.plugin.host.Pf4jPluginBridge",
-            "0.0.4",
+            "0.0.5",
             "3.2.0",
             "MieAI",
             null,

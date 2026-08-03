@@ -1,6 +1,6 @@
 # mieai-bot
 
-`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.4`，要求 Java 21、MieBot `1.0.3` 和 Plugin API `3.2.0`。
+`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.5`，要求 Java 21、MieBot `1.0.6` 和 Plugin API `3.2.0`。
 
 ## 构建
 
@@ -19,7 +19,7 @@ $env:JAVA_HOME='E:\JAVA\dragonwell-21.0.11.0.11+10-GA'
 .\gradlew.bat clean test jar --no-configuration-cache
 ```
 
-输出文件为 `build/libs/mieai-bot-0.0.4.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
+输出文件为 `build/libs/mieai-bot-0.0.5.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
 
 ## 安装
 
@@ -46,6 +46,8 @@ $env:JAVA_HOME='E:\JAVA\dragonwell-21.0.11.0.11+10-GA'
 /mieai keyword <触发关键词>
 /mieai chat
 ```
+
+指令用途：`prob` 设置当前群 AI 聊天概率；`prompt` 设置当前群独立系统提示词；`keyword` 设置当前群独立触发关键词并覆盖默认关键词；`chat` 切换当前群 AI 聊天的启用或禁用状态。发送 `/mieai` 或 `/mieai help` 可以查看逐条说明。
 
 `/mieai chat` 在启用和禁用之间切换。所有成功修改都会立即原子写回 `config.yml`；提示词或关键词超限时不会保存，并使用配置中的提醒文本引用回复。
 

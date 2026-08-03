@@ -27,6 +27,9 @@ class CommandService(
         content: String,
     ): CommandOutcome {
         val parsed = parse(content) ?: return CommandOutcome.NotCommand
+        if (parsed.name.isEmpty() || parsed.name == "help") {
+            return CommandOutcome.Handled(helpReply())
+        }
         if (memberRole != GroupMemberRole.ADMIN && memberRole != GroupMemberRole.OWNER) {
             return CommandOutcome.Handled("仅群管理员或群主可以使用此指令。")
         }
@@ -59,9 +62,7 @@ class CommandService(
                 if (parsed.argument.isNotEmpty()) return CommandOutcome.Handled("用法：/mieai chat")
                 DesiredCommand("chat", (!config.chat.disabledGroups.contains(groupId)).toString())
             }
-            else -> return CommandOutcome.Handled(
-                "可用指令：/mieai prob、/mieai prompt、/mieai keyword、/mieai chat",
-            )
+            else -> return CommandOutcome.Handled(helpReply())
         }
 
         val plan = database.commandPlan(eventId, desired.kind, desired.value)
@@ -106,6 +107,16 @@ class CommandService(
         "chat" -> if (value.toBoolean()) "当前群 AI 聊天已禁用。" else "当前群 AI 聊天已启用。"
         else -> "设置已更新。"
     }
+
+    private fun helpReply(): String = """
+        可用指令（修改群设置仅限群管理员和群主）：
+        /mieai：显示这份指令帮助。
+        /mieai prob <1-100>：设置当前群 AI 聊天概率，数值越高越容易通过概率触发。
+        /mieai prompt <提示词>：设置当前群独立系统提示词，影响 AI 回复风格和规则。
+        /mieai keyword <关键词>：设置当前群独立触发关键词，覆盖默认关键词。
+        /mieai chat：切换当前群 AI 聊天的启用和禁用状态，禁用后所有触发方式都会停止。
+        /mieai help：显示此帮助说明。
+    """.trimIndent()
 
     private fun parse(content: String): ParsedCommand? {
         val trimmedStart = content.trimStart()

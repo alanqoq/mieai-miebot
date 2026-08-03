@@ -1,7 +1,7 @@
 {
   "build.gradle.kts": {
-    "mtime": 1785682376.6071303,
-    "ast_hash": "9adb7ba1994ceabb37026f292a278915",
+    "mtime": 1785760616.243072,
+    "ast_hash": "9a1c25851b1d12da11d6c86bfbb37b5b",
     "semantic_hash": ""
   },
   "gradlew": {
@@ -45,9 +45,9 @@
     "semantic_hash": ""
   },
   "src/main/kotlin/com/mieai/bot/command/CommandService.kt": {
-    "mtime": 1785504846.4915617,
-    "ast_hash": "00468b565c38be59ea0867737f3e4037",
-    "semantic_hash": "00468b565c38be59ea0867737f3e4037"
+    "mtime": 1785760616.2400632,
+    "ast_hash": "3decd775dd45cc7aba5572d48dc6828c",
+    "semantic_hash": ""
   },
   "src/main/kotlin/com/mieai/bot/config/MieAiBotConfig.kt": {
     "mtime": 1785499327.922477,
@@ -115,8 +115,8 @@
     "semantic_hash": "fb84e7be4e3c732591857483ad73d28f"
   },
   "src/test/kotlin/com/mieai/bot/Pf4jSqliteParentLoaderIntegrationTest.kt": {
-    "mtime": 1785682376.6138377,
-    "ast_hash": "6e9e7e0916b9e264992d4ea3dbcbae51",
+    "mtime": 1785760616.2491047,
+    "ast_hash": "8fac9447d89fff0acbe74d2416cbafe8",
     "semantic_hash": ""
   },
   "src/test/kotlin/com/mieai/bot/PluginIntegrationTest.kt": {
@@ -135,9 +135,9 @@
     "semantic_hash": ""
   },
   "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt": {
-    "mtime": 1785500150.2289472,
-    "ast_hash": "8aa4c4fbb301936a101abe8c33265928",
-    "semantic_hash": "8aa4c4fbb301936a101abe8c33265928"
+    "mtime": 1785760797.258391,
+    "ast_hash": "0cea842bca45a1e74ead20c51656dfb4",
+    "semantic_hash": ""
   },
   "src/test/kotlin/com/mieai/bot/config/MieAiConfigCodecTest.kt": {
     "mtime": 1785499147.7939327,
@@ -160,8 +160,8 @@
     "semantic_hash": "e2fdd5a77336db90347001788cf56e3d"
   },
   "README.md": {
-    "mtime": 1785682376.609822,
-    "ast_hash": "7275c497334601c6ff983802e0f864c6",
+    "mtime": 1785760847.497801,
+    "ast_hash": "61845627c21c1a2d36961fd9d0fac9ad",
     "semantic_hash": ""
   },
   "src/main/resources/qqbot-plugin-default.yml": {

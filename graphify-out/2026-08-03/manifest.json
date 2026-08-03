@@ -25,8 +25,8 @@
     "semantic_hash": "e4b5d5bfa81a03356aa81c846b8e8167"
   },
   "src/main/kotlin/com/mieai/bot/MieAiEngine.kt": {
-    "mtime": 1785682376.5996299,
-    "ast_hash": "b54befd6a2c2ada6da774dabee800639",
+    "mtime": 1785743467.335029,
+    "ast_hash": "ef250e17621277616c3f64b18330513f",
     "semantic_hash": ""
   },
   "src/main/kotlin/com/mieai/bot/ai/ChatModels.kt": {
@@ -80,9 +80,9 @@
     "semantic_hash": "4a24cdd8212ed687e191d8d1fdb0f477"
   },
   "src/main/kotlin/com/mieai/bot/event/TriggerDecider.kt": {
-    "mtime": 1785505154.8119307,
-    "ast_hash": "f79a08aaa115e67d54c93d59e6edb2c1",
-    "semantic_hash": "f79a08aaa115e67d54c93d59e6edb2c1"
+    "mtime": 1785743484.9456706,
+    "ast_hash": "1f62cfbba38c12a3b6f41213399eaac8",
+    "semantic_hash": ""
   },
   "src/main/kotlin/com/mieai/bot/history/HistoryDatabase.kt": {
     "mtime": 1785505024.4976647,
@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "src/test/kotlin/com/mieai/bot/PluginIntegrationTest.kt": {
-    "mtime": 1785500716.498804,
-    "ast_hash": "3bdd91ae5dce038e38f83cb7b5ab39d3",
-    "semantic_hash": "3bdd91ae5dce038e38f83cb7b5ab39d3"
+    "mtime": 1785743738.7410884,
+    "ast_hash": "a524cb32db438eda3e7f0cee6759be7e",
+    "semantic_hash": ""
   },
   "src/test/kotlin/com/mieai/bot/ai/ModelFailoverManagerTest.kt": {
     "mtime": 1785500150.2249546,
@@ -145,9 +145,9 @@
     "semantic_hash": "368b739983289d996e51abdaa0d9a4e9"
   },
   "src/test/kotlin/com/mieai/bot/event/TriggerDeciderTest.kt": {
-    "mtime": 1785500752.9756644,
-    "ast_hash": "195d9a6c94ebbbe4764b64df3601a86e",
-    "semantic_hash": "195d9a6c94ebbbe4764b64df3601a86e"
+    "mtime": 1785743467.3360293,
+    "ast_hash": "dcb322886d3d3a4314c8cb42f66ceb30",
+    "semantic_hash": ""
   },
   "src/test/kotlin/com/mieai/bot/history/HistoryDatabaseTest.kt": {
     "mtime": 1785573219.9063258,
@@ -169,11 +169,6 @@
     "ast_hash": "de4da82f2d3274f6a8fb15a9cce0b822",
     "semantic_hash": "de4da82f2d3274f6a8fb15a9cce0b822"
   },
-  ".codex/hooks.json": {
-    "mtime": 1785678664.8597505,
-    "ast_hash": "15de2358d8e3e705eac32a68dbd58d96",
-    "semantic_hash": ""
-  },
   "AGENTS.md": {
     "mtime": 1785678664.854239,
     "ast_hash": "21ceb6533048be51308e69e7b74a35cf",
@@ -182,6 +177,16 @@
   "src/test/kotlin/com/mieai/bot/MieAiEngineTest.kt": {
     "mtime": 1785682200.283959,
     "ast_hash": "3e366a14d3c50138af8168b134ce75f5",
+    "semantic_hash": ""
+  },
+  "src/main/kotlin/com/mieai/bot/event/BotMentionParser.kt": {
+    "mtime": 1785743230.3390565,
+    "ast_hash": "ad167f3e820d63725e79b7edec5d3a34",
+    "semantic_hash": ""
+  },
+  "src/test/kotlin/com/mieai/bot/event/BotMentionParserTest.kt": {
+    "mtime": 1785743230.3430536,
+    "ast_hash": "ccc44268c3d71bbc114d57074c7f5adb",
     "semantic_hash": ""
   }
 }

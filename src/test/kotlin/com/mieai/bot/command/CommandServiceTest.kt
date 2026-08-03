@@ -19,6 +19,31 @@ class CommandServiceTest {
     lateinit var temporaryDirectory: Path
 
     @Test
+    fun helpExplainsEveryMieAiCommandForAnyMember() {
+        fixture().use { fixture ->
+            val help = fixture.service.handle(
+                UUID.randomUUID(),
+                "group-openid",
+                GroupMemberRole.MEMBER,
+                "/mieai",
+            ) as CommandOutcome.Handled
+            val explicitHelp = fixture.service.handle(
+                UUID.randomUUID(),
+                "group-openid",
+                GroupMemberRole.MEMBER,
+                "/mieai help",
+            ) as CommandOutcome.Handled
+
+            assertEquals(help, explicitHelp)
+            assertTrue(help.reply.contains("/mieai prob <1-100>：设置当前群 AI 聊天概率"))
+            assertTrue(help.reply.contains("/mieai prompt <提示词>：设置当前群独立系统提示词"))
+            assertTrue(help.reply.contains("/mieai keyword <关键词>：设置当前群独立触发关键词"))
+            assertTrue(help.reply.contains("/mieai chat：切换当前群 AI 聊天的启用和禁用状态"))
+            assertTrue(help.reply.contains("/mieai help：显示此帮助说明"))
+        }
+    }
+
+    @Test
     fun duplicateChatToggleEventKeepsItsFirstDesiredState() {
         fixture().use { fixture ->
             val eventId = UUID.randomUUID()

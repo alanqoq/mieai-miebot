@@ -1,12 +1,12 @@
-# Graph Report - mieai-qqbot  (2026-08-02)
+# Graph Report - mieai-qqbot  (2026-08-03)
 
 ## Corpus Check
-- 36 files · ~12,793 words
+- 38 files · ~13,036 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 505 nodes · 719 edges · 38 communities (32 shown, 6 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.81)
+- 514 nodes · 733 edges · 46 communities (34 shown, 12 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -28,7 +28,7 @@
 - Pf4jSqliteParentLoaderIntegrationTest
 - ModelFailoverManager
 - DeliveryTracker
-- required
+- .insertInbound
 - AttachmentParser
 - GroupChatQueue
 - items
@@ -51,6 +51,14 @@
 - groupProbabilities
 - AGENTS.md
 - ChatTaskStatus
+- HistoryModels.kt
+- queue
+- StoredMessage
+- NewInboundMessage
+- .cleanup
+- .differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask
+- BotMentionParser
+- BotMentionParserTest
 
 ## God Nodes (most connected - your core abstractions)
 1. `HistoryDatabase` - 45 edges
@@ -83,15 +91,15 @@
 - **API Configuration Parameters** — src_main_resources_qqbot_plugin_default_yml_api_baseurl, src_main_resources_qqbot_plugin_default_yml_api_apikey, src_main_resources_qqbot_plugin_default_yml_api_protocol, src_main_resources_qqbot_plugin_default_yml_api_primarymodel, src_main_resources_qqbot_plugin_default_yml_api_fallbackmodel [EXTRACTED 1.00]
 - **Chat Configuration Parameters** — src_main_resources_qqbot_plugin_default_yml_chat_defaultprobability, src_main_resources_qqbot_plugin_default_yml_chat_defaultsystemprompt, src_main_resources_qqbot_plugin_default_yml_chat_defaultkeyword, src_main_resources_qqbot_plugin_default_yml_chat_imageunderstandingenabled [EXTRACTED 1.00]
 
-## Communities (38 total, 6 thin omitted)
+## Communities (46 total, 12 thin omitted)
 
 ### Community 0 - "HistoryDatabase"
-Cohesion: 0.06
-Nodes (21): Connection, bindAll(), HistoryDatabase, AutoCloseable, T, setNullableString(), singleLongOrNull(), ChatTaskRecord (+13 more)
+Cohesion: 0.17
+Nodes (4): Connection, HistoryDatabase, AutoCloseable, ChatTaskRecord
 
 ### Community 1 - "required"
-Cohesion: 0.06
-Nodes (30): api, apiKey, baseUrl, chat, fallbackDurationMinutes, fallbackModel, maxPendingPerGroup, primaryModel (+22 more)
+Cohesion: 0.05
+Nodes (37): api, apiKey, baseUrl, chat, defaultKeyword, defaultProbability, defaultSystemPrompt, disabledGroups (+29 more)
 
 ### Community 2 - "properties"
 Cohesion: 0.05
@@ -107,7 +115,7 @@ Nodes (14): JsonNode, ObjectNode, RuntimeException, ChatApiException, ChatComple
 
 ### Community 5 - "MieAiEngine"
 Cohesion: 0.09
-Nodes (12): EventSubscription, PluginEvent, BotPlugin, MieAiBotPlugin, BotPlugin, BotPluginFactory, PluginRuntimeContext, MieAiBotPluginFactory (+4 more)
+Nodes (13): EventSubscription, PluginEvent, PluginTestContext, BotPlugin, MieAiBotPlugin, BotPlugin, BotPluginFactory, PluginRuntimeContext (+5 more)
 
 ### Community 6 - "properties"
 Cohesion: 0.07
@@ -137,9 +145,9 @@ Nodes (6): FallbackWindow, T, ModelFailoverManager, ModelSelection, RouteKey, Mo
 Cohesion: 0.29
 Nodes (3): java, DeliveryTracker, OpenDelivery
 
-### Community 13 - "required"
-Cohesion: 0.12
-Nodes (17): defaultKeyword, defaultProbability, defaultSystemPrompt, disabledGroups, groupKeywords, groupProbabilities, groupSystemPrompts, imageUnderstandingEnabled (+9 more)
+### Community 13 - ".insertInbound"
+Cohesion: 0.23
+Nodes (4): T, setNullableString(), singleLongOrNull(), ImageAttachment
 
 ### Community 15 - "GroupChatQueue"
 Cohesion: 0.39
@@ -205,25 +213,33 @@ Nodes (3): additionalProperties, type, groupProbabilities
 Cohesion: 0.33
 Nodes (6): ChatTaskStatus, CANCELLED, COMPLETED, FAILED, PENDING, RUNNING
 
+### Community 38 - "HistoryModels.kt"
+Cohesion: 0.18
+Nodes (7): CleanupResult, CommandPlan, MessageDirection, BOT, MEMBER, PendingImage, StoredImage
+
+### Community 39 - "queue"
+Cohesion: 0.20
+Nodes (10): maxPendingPerGroup, maximum, minimum, type, maxPendingPerGroup, queue, additionalProperties, properties (+2 more)
+
 ## Knowledge Gaps
 - **149 isolated node(s):** `USER`, `ASSISTANT`, `NotCommand`, `OPENAI_OLD`, `OPENAI_NEW` (+144 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HistoryDatabase` connect `HistoryDatabase` to `DeliveryTracker`, `.handleLocked`?**
-  _High betweenness centrality (0.112) - this node is a cross-community bridge._
+- **Why does `HistoryDatabase` connect `HistoryDatabase` to `HistoryModels.kt`, `.handleLocked`, `StoredMessage`, `NewInboundMessage`, `.cleanup`, `.differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask`, `DeliveryTracker`, `.insertInbound`?**
+  _High betweenness centrality (0.109) - this node is a cross-community bridge._
 - **Why does `validateBaseUrl()` connect `MieAiBotConfig.kt` to `OpenAiChatProvider`?**
-  _High betweenness centrality (0.103) - this node is a cross-community bridge._
-- **Why does `StoredImage` connect `HistoryDatabase` to `ImageDownloader`, `OpenAiChatProvider`?**
-  _High betweenness centrality (0.088) - this node is a cross-community bridge._
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
+- **Why does `StoredImage` connect `HistoryModels.kt` to `StoredMessage`, `ImageDownloader`, `OpenAiChatProvider`?**
+  _High betweenness centrality (0.085) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `OpenAiChatProvider` (e.g. with `.everyMimoV25PrefixUsesOpenAiBearerChatCompletionsAndMultipleBase64Images()` and `.usesChatCompletionsAndBearerForOpenAiOld()`) actually correct?**
   _`OpenAiChatProvider` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `USER`, `ASSISTANT`, `NotCommand` to the rest of the system?**
   _149 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `HistoryDatabase` be split into smaller, more focused modules?**
-  _Cohesion score 0.06013986013986014 - nodes in this community are weakly interconnected._
 - **Should `required` be split into smaller, more focused modules?**
-  _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05263157894736842 - nodes in this community are weakly interconnected._
+- **Should `properties` be split into smaller, more focused modules?**
+  _Cohesion score 0.05263157894736842 - nodes in this community are weakly interconnected._

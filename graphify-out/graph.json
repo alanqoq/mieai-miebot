@@ -168,8 +168,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_mieaibotplugin_mieaibotplugin_stop",
-      "community": 10,
-      "community_name": "Pf4jSqliteParentLoaderIntegrationTest",
+      "community": 5,
+      "community_name": "MieAiEngine",
       "norm_label": ".stop()"
     },
     {
@@ -344,8 +344,8 @@
       "source_location": "L213",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_mieaiengine_mieaiengine_tochatturn",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 4,
+      "community_name": "OpenAiChatProvider",
       "norm_label": ".tochatturn()"
     },
     {
@@ -880,7 +880,7 @@
       "label": ".applyPlan()",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L74",
+      "source_location": "L75",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_applyplan",
       "community": 7,
@@ -891,7 +891,7 @@
       "label": ".successReply()",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L102",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_successreply",
       "community": 7,
@@ -899,10 +899,21 @@
       "norm_label": ".successreply()"
     },
     {
+      "label": ".helpReply()",
+      "file_type": "code",
+      "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_helpreply",
+      "community": 7,
+      "community_name": ".handleLocked",
+      "norm_label": ".helpreply()"
+    },
+    {
       "label": ".parse()",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L110",
+      "source_location": "L121",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_parse",
       "community": 7,
@@ -913,7 +924,7 @@
       "label": "ParsedCommand",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L122",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_parsedcommand",
       "community": 7,
@@ -924,7 +935,7 @@
       "label": "DesiredCommand",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L123",
+      "source_location": "L134",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_desiredcommand",
       "community": 7,
@@ -935,7 +946,7 @@
       "label": "codePointLength()",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L127",
+      "source_location": "L138",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_codepointlength",
       "community": 7,
@@ -946,7 +957,7 @@
       "label": "CommandOutcome",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L131",
+      "source_location": "L142",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_commandoutcome",
       "community": 7,
@@ -957,7 +968,7 @@
       "label": "NotCommand",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L132",
+      "source_location": "L143",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_notcommand",
       "community": 7,
@@ -968,7 +979,7 @@
       "label": "Handled",
       "file_type": "code",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L133",
+      "source_location": "L144",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_command_commandservice_handled",
       "community": 7,
@@ -1577,7 +1588,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": "deliverytracker.kt"
     },
     {
@@ -1588,7 +1599,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker_deliverytracker",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": "deliverytracker"
     },
     {
@@ -1599,7 +1610,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker_deliverytracker_start",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": ".start()"
     },
     {
@@ -1610,7 +1621,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker_deliverytracker_track",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": ".track()"
     },
     {
@@ -1621,7 +1632,7 @@
       "_origin": "ast",
       "id": "java",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": "java"
     },
     {
@@ -1632,7 +1643,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker_deliverytracker_pollsafely",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": ".pollsafely()"
     },
     {
@@ -1643,7 +1654,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker_deliverytracker_poll",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": ".poll()"
     },
     {
@@ -1654,7 +1665,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker_deliverytracker_schedulefastpoll",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": ".schedulefastpoll()"
     },
     {
@@ -1665,7 +1676,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_delivery_deliverytracker_deliverytracker_pollone",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": ".pollone()"
     },
     {
@@ -1719,8 +1730,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_event_attachmentparser",
-      "community": 14,
-      "community_name": "AttachmentParser",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "attachmentparser.kt"
     },
     {
@@ -1730,8 +1741,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_event_attachmentparser_attachmentparser",
-      "community": 14,
-      "community_name": "AttachmentParser",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "attachmentparser"
     },
     {
@@ -1741,8 +1752,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_event_attachmentparser_attachmentparser_parse",
-      "community": 14,
-      "community_name": "AttachmentParser",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": ".parse()"
     },
     {
@@ -1752,8 +1763,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_event_attachmentparser_attachmentparser_isimage",
-      "community": 14,
-      "community_name": "AttachmentParser",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": ".isimage()"
     },
     {
@@ -1829,8 +1840,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "historydatabase.kt"
     },
     {
@@ -1884,8 +1895,8 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_insertinbound",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".insertinbound()"
     },
     {
@@ -1895,8 +1906,8 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_reserveoutbound",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".reserveoutbound()"
     },
     {
@@ -1917,7 +1928,7 @@
       "source_location": "L209",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_pendingimages",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": ".pendingimages()"
     },
@@ -1939,8 +1950,8 @@
       "source_location": "L240",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_finishimages",
-      "community": 38,
-      "community_name": "HistoryModels.kt",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".finishimages()"
     },
     {
@@ -1950,8 +1961,8 @@
       "source_location": "L296",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_loadmessage",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".loadmessage()"
     },
     {
@@ -1961,8 +1972,8 @@
       "source_location": "L298",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_loadcontext",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".loadcontext()"
     },
     {
@@ -1972,8 +1983,8 @@
       "source_location": "L331",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_loadreferencecontext",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".loadreferencecontext()"
     },
     {
@@ -1983,8 +1994,8 @@
       "source_location": "L352",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_haspendingimages",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".haspendingimages()"
     },
     {
@@ -2038,8 +2049,8 @@
       "source_location": "L404",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_finishchattask",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".finishchattask()"
     },
     {
@@ -2060,7 +2071,7 @@
       "source_location": "L427",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_commandplan",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": ".commandplan()"
     },
@@ -2083,7 +2094,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_opendeliveries",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": ".opendeliveries()"
     },
     {
@@ -2093,8 +2104,8 @@
       "source_location": "L488",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_updatedelivery",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".updatedelivery()"
     },
     {
@@ -2104,8 +2115,8 @@
       "source_location": "L499",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_cleanup",
-      "community": 42,
-      "community_name": ".cleanup",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".cleanup()"
     },
     {
@@ -2115,8 +2126,8 @@
       "source_location": "L545",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_protectedmessageids",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".protectedmessageids()"
     },
     {
@@ -2126,8 +2137,8 @@
       "source_location": "L574",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_deleteoldest",
-      "community": 42,
-      "community_name": ".cleanup",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".deleteoldest()"
     },
     {
@@ -2137,8 +2148,8 @@
       "source_location": "L595",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_groupids",
-      "community": 42,
-      "community_name": ".cleanup",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".groupids()"
     },
     {
@@ -2148,8 +2159,8 @@
       "source_location": "L601",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_countmessages",
-      "community": 42,
-      "community_name": ".cleanup",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".countmessages()"
     },
     {
@@ -2170,8 +2181,8 @@
       "source_location": "L629",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_findmessageidbyeventkey",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".findmessageidbyeventkey()"
     },
     {
@@ -2181,8 +2192,8 @@
       "source_location": "L636",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_findmessageidbyplatformid",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".findmessageidbyplatformid()"
     },
     {
@@ -2192,8 +2203,8 @@
       "source_location": "L649",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_insertmessage",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".insertmessage()"
     },
     {
@@ -2203,8 +2214,8 @@
       "source_location": "L693",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_loadmessages",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".loadmessages()"
     },
     {
@@ -2214,8 +2225,8 @@
       "source_location": "L742",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_historydatabase_transaction",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".transaction()"
     },
     {
@@ -2225,8 +2236,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_kt_t",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "t"
     },
     {
@@ -2247,8 +2258,8 @@
       "source_location": "L760",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_setnullablestring",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "setnullablestring()"
     },
     {
@@ -2258,8 +2269,8 @@
       "source_location": "L764",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_bindall",
-      "community": 42,
-      "community_name": ".cleanup",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "bindall()"
     },
     {
@@ -2269,8 +2280,8 @@
       "source_location": "L775",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historydatabase_singlelongornull",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "singlelongornull()"
     },
     {
@@ -2280,7 +2291,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "historymodels.kt"
     },
@@ -2291,7 +2302,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_messagedirection",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "messagedirection"
     },
@@ -2302,7 +2313,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_messagedirection_member",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "member"
     },
@@ -2313,7 +2324,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_messagedirection_bot",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "bot"
     },
@@ -2324,8 +2335,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_imageattachment",
-      "community": 13,
-      "community_name": ".insertInbound",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "imageattachment"
     },
     {
@@ -2335,7 +2346,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_storedimage",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "storedimage"
     },
@@ -2346,8 +2357,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_newinboundmessage",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "newinboundmessage"
     },
     {
@@ -2357,8 +2368,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_storedmessage",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "storedmessage"
     },
     {
@@ -2368,8 +2379,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_storedmessage_hasmodelcontent",
-      "community": 40,
-      "community_name": "StoredMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".hasmodelcontent()"
     },
     {
@@ -2379,7 +2390,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_pendingimage",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "pendingimage"
     },
@@ -2390,8 +2401,8 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_chattaskstatus",
-      "community": 37,
-      "community_name": "ChatTaskStatus",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "chattaskstatus"
     },
     {
@@ -2401,8 +2412,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_chattaskstatus_pending",
-      "community": 37,
-      "community_name": "ChatTaskStatus",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "pending"
     },
     {
@@ -2412,8 +2423,8 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_chattaskstatus_running",
-      "community": 37,
-      "community_name": "ChatTaskStatus",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "running"
     },
     {
@@ -2423,8 +2434,8 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_chattaskstatus_completed",
-      "community": 37,
-      "community_name": "ChatTaskStatus",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "completed"
     },
     {
@@ -2434,8 +2445,8 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_chattaskstatus_failed",
-      "community": 37,
-      "community_name": "ChatTaskStatus",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "failed"
     },
     {
@@ -2445,8 +2456,8 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_chattaskstatus_cancelled",
-      "community": 37,
-      "community_name": "ChatTaskStatus",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "cancelled"
     },
     {
@@ -2468,7 +2479,7 @@
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_opendelivery",
       "community": 12,
-      "community_name": "DeliveryTracker",
+      "community_name": "HistoryModels.kt",
       "norm_label": "opendelivery"
     },
     {
@@ -2478,7 +2489,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_commandplan",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "commandplan"
     },
@@ -2489,8 +2500,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_cleanuppolicy",
-      "community": 42,
-      "community_name": ".cleanup",
+      "community": 5,
+      "community_name": "MieAiEngine",
       "norm_label": "cleanuppolicy"
     },
     {
@@ -2500,7 +2511,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_history_historymodels_cleanupresult",
-      "community": 38,
+      "community": 12,
       "community_name": "HistoryModels.kt",
       "norm_label": "cleanupresult"
     },
@@ -2511,8 +2522,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_media_imagedownloader",
-      "community": 17,
-      "community_name": "ImageDownloader",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "imagedownloader.kt"
     },
     {
@@ -2522,8 +2533,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_media_imagedownloader_imagedownloader",
-      "community": 17,
-      "community_name": "ImageDownloader",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "imagedownloader"
     },
     {
@@ -2533,8 +2544,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_media_imagedownloader_kt_autocloseable",
-      "community": 17,
-      "community_name": "ImageDownloader",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "autocloseable"
     },
     {
@@ -2544,8 +2555,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_media_imagedownloader_imagedownloader_download",
-      "community": 17,
-      "community_name": "ImageDownloader",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": ".download()"
     },
     {
@@ -2555,8 +2566,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_media_imagedownloader_imagedownloader_detectmime",
-      "community": 17,
-      "community_name": "ImageDownloader",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": ".detectmime()"
     },
     {
@@ -2566,8 +2577,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "bytearray",
-      "community": 17,
-      "community_name": "ImageDownloader",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": "bytearray"
     },
     {
@@ -2577,8 +2588,8 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "src_main_kotlin_com_mieai_bot_media_imagedownloader_imagedownloader_close",
-      "community": 17,
-      "community_name": "ImageDownloader",
+      "community": 12,
+      "community_name": "HistoryModels.kt",
       "norm_label": ".close()"
     },
     {
@@ -3237,7 +3248,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_properties_chat",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "chat"
     },
@@ -3248,7 +3259,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_chat_type",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "type"
     },
@@ -3831,7 +3842,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_chat_required",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "required"
     },
@@ -3842,7 +3853,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_defaultprobability",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "defaultprobability"
     },
@@ -3853,7 +3864,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_groupprobabilities",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "groupprobabilities"
     },
@@ -3864,7 +3875,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_defaultsystemprompt",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "defaultsystemprompt"
     },
@@ -3875,7 +3886,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_groupsystemprompts",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "groupsystemprompts"
     },
@@ -3886,7 +3897,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_promptmaxlength",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "promptmaxlength"
     },
@@ -3897,7 +3908,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_prompttoolongreply",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "prompttoolongreply"
     },
@@ -3908,7 +3919,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_defaultkeyword",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "defaultkeyword"
     },
@@ -3919,7 +3930,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_groupkeywords",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "groupkeywords"
     },
@@ -3930,7 +3941,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_keywordmaxlength",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "keywordmaxlength"
     },
@@ -3941,7 +3952,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_keywordtoolongreply",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "keywordtoolongreply"
     },
@@ -3952,7 +3963,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_disabledgroups",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "disabledgroups"
     },
@@ -3963,7 +3974,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_imageunderstandingenabled",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "imageunderstandingenabled"
     },
@@ -3974,7 +3985,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ref_maxcontextmessages",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "maxcontextmessages"
     },
@@ -3985,7 +3996,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_chat_additionalproperties",
-      "community": 1,
+      "community": 13,
       "community_name": "required",
       "norm_label": "additionalproperties"
     },
@@ -3996,8 +4007,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_properties_storage",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "storage"
     },
     {
@@ -4007,8 +4018,8 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_storage_type",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "type"
     },
     {
@@ -4315,8 +4326,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_storage_required",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "required"
     },
     {
@@ -4326,8 +4337,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "ref_maxbase64imagebytes",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "maxbase64imagebytes"
     },
     {
@@ -4337,8 +4348,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "ref_maxmessagestotal",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "maxmessagestotal"
     },
     {
@@ -4348,8 +4359,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "ref_defaultmaxmessagespergroup",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "defaultmaxmessagespergroup"
     },
     {
@@ -4359,8 +4370,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "ref_groupmaxmessages",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "groupmaxmessages"
     },
     {
@@ -4370,8 +4381,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "ref_maxmessageagedays",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "maxmessageagedays"
     },
     {
@@ -4381,8 +4392,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "ref_cleanupdeletebatchsize",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "cleanupdeletebatchsize"
     },
     {
@@ -4392,8 +4403,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "ref_cleanuptime",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "cleanuptime"
     },
     {
@@ -4403,8 +4414,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_storage_additionalproperties",
-      "community": 2,
-      "community_name": "properties",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "additionalproperties"
     },
     {
@@ -4414,8 +4425,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_properties_queue",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "queue"
     },
     {
@@ -4425,8 +4436,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_queue_type",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "type"
     },
     {
@@ -4436,8 +4447,8 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_queue_properties",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "properties"
     },
     {
@@ -4447,8 +4458,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_properties_maxpendingpergroup",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "maxpendingpergroup"
     },
     {
@@ -4458,8 +4469,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_maxpendingpergroup_type",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "type"
     },
     {
@@ -4469,8 +4480,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_maxpendingpergroup_minimum",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "minimum"
     },
     {
@@ -4480,8 +4491,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_maxpendingpergroup_maximum",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "maximum"
     },
     {
@@ -4491,8 +4502,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_queue_required",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "required"
     },
     {
@@ -4502,8 +4513,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "ref_maxpendingpergroup",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "maxpendingpergroup"
     },
     {
@@ -4513,8 +4524,8 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_main_resources_qqbot_plugin_schema_queue_additionalproperties",
-      "community": 39,
-      "community_name": "queue",
+      "community": 1,
+      "community_name": "required",
       "norm_label": "additionalproperties"
     },
     {
@@ -5030,8 +5041,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": "commandservicetest.kt"
     },
     {
@@ -5041,52 +5052,63 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": "commandservicetest"
+    },
+    {
+      "label": ".helpExplainsEveryMieAiCommandForAnyMember()",
+      "file_type": "code",
+      "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_helpexplainseverymieaicommandforanymember",
+      "community": 14,
+      "community_name": ".fixture",
+      "norm_label": ".helpexplainseverymieaicommandforanymember()"
     },
     {
       "label": ".duplicateChatToggleEventKeepsItsFirstDesiredState()",
       "file_type": "code",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L21",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_duplicatechattoggleeventkeepsitsfirstdesiredstate",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": ".duplicatechattoggleeventkeepsitsfirstdesiredstate()"
     },
     {
       "label": ".promptAndKeywordLimitsDoNotWriteInvalidConfiguration()",
       "file_type": "code",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L36",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_promptandkeywordlimitsdonotwriteinvalidconfiguration",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": ".promptandkeywordlimitsdonotwriteinvalidconfiguration()"
     },
     {
       "label": ".membersCannotMutateGroupConfiguration()",
       "file_type": "code",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L60",
+      "source_location": "L85",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_memberscannotmutategroupconfiguration",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": ".memberscannotmutategroupconfiguration()"
     },
     {
       "label": ".fixture()",
       "file_type": "code",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L68",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_fixture",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": ".fixture()"
     },
     {
@@ -5096,19 +5118,19 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_kt_fixture",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": "fixture"
     },
     {
       "label": "Fixture",
       "file_type": "code",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L77",
+      "source_location": "L102",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_fixture",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": "fixture"
     },
     {
@@ -5118,19 +5140,19 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_kt_autocloseable",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": "autocloseable"
     },
     {
       "label": ".close()",
       "file_type": "code",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L83",
+      "source_location": "L108",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_command_commandservicetest_fixture_close",
-      "community": 7,
-      "community_name": ".handleLocked",
+      "community": 14,
+      "community_name": ".fixture",
       "norm_label": ".close()"
     },
     {
@@ -5305,8 +5327,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "historydatabasetest.kt"
     },
     {
@@ -5316,8 +5338,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest_historydatabasetest",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "historydatabasetest"
     },
     {
@@ -5327,8 +5349,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest_historydatabasetest_followsonlytherecursivereferencechaininchronologicalorder",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".followsonlytherecursivereferencechaininchronologicalorder()"
     },
     {
@@ -5338,8 +5360,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest_historydatabasetest_withoutreferenceusesonlyearliermessagesfromthesamegroup",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".withoutreferenceusesonlyearliermessagesfromthesamegroup()"
     },
     {
@@ -5349,8 +5371,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest_historydatabasetest_cleanupprotectsaqueuedtriggeranditsreferenceancestors",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".cleanupprotectsaqueuedtriggeranditsreferenceancestors()"
     },
     {
@@ -5360,8 +5382,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest_historydatabasetest_failedoroversizedpureimageisdeletedunlessitcarriesareference",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".failedoroversizedpureimageisdeletedunlessitcarriesareference()"
     },
     {
@@ -5371,8 +5393,8 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest_historydatabasetest_runningchattaskreturnstopendingafterrestart",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".runningchattaskreturnstopendingafterrestart()"
     },
     {
@@ -5382,8 +5404,8 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_history_historydatabasetest_historydatabasetest_insert",
-      "community": 41,
-      "community_name": "NewInboundMessage",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".insert()"
     },
     {
@@ -5393,8 +5415,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_queue_groupchatqueuetest",
-      "community": 43,
-      "community_name": ".differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "groupchatqueuetest.kt"
     },
     {
@@ -5404,8 +5426,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_queue_groupchatqueuetest_groupchatqueuetest",
-      "community": 43,
-      "community_name": ".differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": "groupchatqueuetest"
     },
     {
@@ -5415,8 +5437,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_queue_groupchatqueuetest_groupchatqueuetest_differentgroupsruninparallelwhilewaitingcapacityexcludestherunningtask",
-      "community": 43,
-      "community_name": ".differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".differentgroupsruninparallelwhilewaitingcapacityexcludestherunningtask()"
     },
     {
@@ -5426,8 +5448,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_test_kotlin_com_mieai_bot_queue_groupchatqueuetest_groupchatqueuetest_task",
-      "community": 43,
-      "community_name": ".differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask",
+      "community": 0,
+      "community_name": "HistoryDatabase",
       "norm_label": ".task()"
     },
     {
@@ -7359,7 +7381,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L127",
+      "source_location": "L138",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice",
@@ -7370,7 +7392,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L131",
+      "source_location": "L142",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice",
@@ -7392,7 +7414,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L74",
+      "source_location": "L75",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice",
@@ -7425,7 +7447,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L110",
+      "source_location": "L111",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice",
+      "target": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_helpreply",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice",
@@ -7436,7 +7469,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L102",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice",
@@ -7447,7 +7480,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L123",
+      "source_location": "L134",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice",
@@ -7458,7 +7491,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L122",
+      "source_location": "L133",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice",
@@ -7471,7 +7504,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L74",
+      "source_location": "L99",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_fixture",
@@ -7530,7 +7563,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L45",
+      "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_handlelocked",
@@ -7554,11 +7587,23 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L68",
+      "source_location": "L69",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_handlelocked",
       "target": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_applyplan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_handlelocked",
+      "target": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_helpreply",
       "confidence_score": 1.0
     },
     {
@@ -7578,7 +7623,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_handlelocked",
@@ -7590,7 +7635,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L40",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_handlelocked",
@@ -7614,7 +7659,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L110",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_commandservice_parse",
@@ -7625,7 +7670,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L133",
+      "source_location": "L144",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_handled",
@@ -7636,7 +7681,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "src/main/kotlin/com/mieai/bot/command/CommandService.kt",
-      "source_location": "L132",
+      "source_location": "L143",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_main_kotlin_com_mieai_bot_command_commandservice_notcommand",
@@ -9479,7 +9524,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L73",
+      "source_location": "L98",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_fixture",
@@ -13452,7 +13497,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L21",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest",
@@ -13463,7 +13508,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L68",
+      "source_location": "L93",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest",
@@ -13474,7 +13519,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L60",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest",
+      "target": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_helpexplainseverymieaicommandforanymember",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
+      "source_location": "L85",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest",
@@ -13485,7 +13541,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L36",
+      "source_location": "L61",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest",
@@ -13496,7 +13552,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L77",
+      "source_location": "L102",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest",
@@ -13511,6 +13567,18 @@
       "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
+      "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_helpexplainseverymieaicommandforanymember",
+      "target": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_fixture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_duplicatechattoggleeventkeepsitsfirstdesiredstate",
       "target": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_fixture",
       "confidence_score": 1.0
@@ -13520,7 +13588,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L38",
+      "source_location": "L63",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_promptandkeywordlimitsdonotwriteinvalidconfiguration",
@@ -13532,7 +13600,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L62",
+      "source_location": "L87",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_memberscannotmutategroupconfiguration",
@@ -13544,7 +13612,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L74",
+      "source_location": "L99",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_commandservicetest_fixture",
@@ -13555,7 +13623,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L68",
+      "source_location": "L93",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -13567,7 +13635,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L83",
+      "source_location": "L108",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_fixture",
@@ -13578,7 +13646,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "src/test/kotlin/com/mieai/bot/command/CommandServiceTest.kt",
-      "source_location": "L77",
+      "source_location": "L102",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_test_kotlin_com_mieai_bot_command_commandservicetest_fixture",
@@ -14204,5 +14272,5 @@
       "source_file": "src/main/resources/qqbot-plugin-default.yml"
     }
   ],
-  "built_at_commit": "6f15f6e22ddb8b874acb6fa0f3072097d1a0b301"
+  "built_at_commit": "7c255e842202396b23698cb508cf484b33430840"
 }

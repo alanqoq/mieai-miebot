@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.mieai.bot"
-version = providers.gradleProperty("pluginVersion").orElse("0.0.4").get()
+version = providers.gradleProperty("pluginVersion").orElse("0.0.5").get()
 
 java {
     toolchain {
@@ -17,7 +17,7 @@ java {
     withSourcesJar()
 }
 
-val qqbotSdkVersion = providers.gradleProperty("qqbotSdkVersion").orElse("1.0.3")
+val qqbotSdkVersion = providers.gradleProperty("qqbotSdkVersion").orElse("1.0.6")
 val qqbotSdkRepository = providers.gradleProperty("qqbotSdkRepository")
     .orElse(providers.environmentVariable("QQBOT_SDK_REPOSITORY"))
     .orElse("../miebot/build/plugin-sdk/repository")
