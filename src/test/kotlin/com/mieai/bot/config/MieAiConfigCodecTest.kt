@@ -21,6 +21,14 @@ class MieAiConfigCodecTest {
     fun `render emits comments and round trips all dynamic group values`() {
         val defaults = MieAiBotConfig.defaults()
         val configured = defaults.copy(
+            commands = defaults.commands.copy(
+                mainAlias = "ai",
+                helpAlias = "查询mieai指令",
+                probAlias = "设置概率",
+                promptAlias = "设置提示词",
+                keywordAlias = "设置关键词",
+                chatAlias = "切换聊天",
+            ),
             chat = defaults.chat.copy(
                 groupProbabilities = mapOf("group-b" to 15),
                 groupSystemPrompts = mapOf("group-b" to "第一行\n第二行"),
@@ -33,9 +41,23 @@ class MieAiConfigCodecTest {
         val rendered = MieAiConfigCodec.render(configured)
 
         assertTrue(rendered.contains("# 服务域名。"))
+        assertTrue(rendered.contains("# /mieai help 的独立别名"))
         assertTrue(rendered.contains("# 每群单独关键词。"))
         assertTrue(rendered.endsWith("\n"))
         assertEquals(configured.immutableCopy(), MieAiConfigCodec.parse(rendered))
+    }
+
+    @Test
+    fun `legacy config without commands section uses empty aliases`() {
+        val rendered = MieAiConfigCodec.render(MieAiBotConfig.defaults())
+        val commandsStart = rendered.indexOf("# 指令别名设置。")
+        val chatStart = rendered.indexOf("# 群聊触发、提示词、关键词和上文设置。")
+        val legacy = rendered.removeRange(commandsStart, chatStart)
+
+        val parsed = MieAiConfigCodec.parse(legacy)
+
+        assertEquals(CommandAliasesConfig(), parsed.commands)
+        assertEquals(MieAiBotConfig.defaults(), parsed)
     }
 
     @Test
@@ -68,6 +90,21 @@ class MieAiConfigCodecTest {
 
         val invalidProtocol = MieAiConfigCodec.render(defaults).replace("\"openai-old\"", "\"OPENAI_OLD\"")
         assertFailsWith<ConfigValidationException> { MieAiConfigCodec.parse(invalidProtocol) }
+    }
+
+    @Test
+    fun `command aliases reject reserved duplicate and malformed values`() {
+        assertFailsWith<ConfigValidationException> { CommandAliasesConfig(mainAlias = "MIEAI") }
+        assertFailsWith<ConfigValidationException> {
+            CommandAliasesConfig(helpAlias = "Same", probAlias = "same")
+        }
+        assertFailsWith<ConfigValidationException> { CommandAliasesConfig(helpAlias = "/help") }
+        assertFailsWith<ConfigValidationException> { CommandAliasesConfig(probAlias = "set prob") }
+        assertFailsWith<ConfigValidationException> { CommandAliasesConfig(promptAlias = " prompt") }
+        assertFailsWith<ConfigValidationException> { CommandAliasesConfig(keywordAlias = "bad\u0001alias") }
+        assertFailsWith<ConfigValidationException> { CommandAliasesConfig(chatAlias = "a".repeat(65)) }
+
+        assertEquals(64, codePointLength(CommandAliasesConfig(chatAlias = "聊".repeat(64)).chatAlias))
     }
 
     @Test

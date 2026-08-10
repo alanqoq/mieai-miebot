@@ -1,8 +1,10 @@
 package com.mieai.bot.command
 
+import com.mieai.bot.config.CommandAliasesConfig
 import com.mieai.bot.config.MieAiConfigStore
 import com.mieai.bot.history.HistoryDatabase
 import com.mieai.qqbot.plugin.api.GroupMemberRole
+import java.util.Locale
 import java.util.UUID
 
 class CommandService(
@@ -26,14 +28,14 @@ class CommandService(
         memberRole: GroupMemberRole?,
         content: String,
     ): CommandOutcome {
-        val parsed = parse(content) ?: return CommandOutcome.NotCommand
+        val config = configStore.snapshot()
+        val parsed = parse(content, config.commands) ?: return CommandOutcome.NotCommand
         if (parsed.name.isEmpty() || parsed.name == "help") {
-            return CommandOutcome.Handled(helpReply())
+            return CommandOutcome.Handled(helpReply(config.commands))
         }
         if (memberRole != GroupMemberRole.ADMIN && memberRole != GroupMemberRole.OWNER) {
             return CommandOutcome.Handled("仅群管理员或群主可以使用此指令。")
         }
-        val config = configStore.snapshot()
         val desired = when (parsed.name) {
             "prob" -> {
                 val probability = parsed.argument.toIntOrNull()
@@ -62,7 +64,7 @@ class CommandService(
                 if (parsed.argument.isNotEmpty()) return CommandOutcome.Handled("用法：/mieai chat")
                 DesiredCommand("chat", (!config.chat.disabledGroups.contains(groupId)).toString())
             }
-            else -> return CommandOutcome.Handled(helpReply())
+            else -> return CommandOutcome.Handled(helpReply(config.commands))
         }
 
         val plan = database.commandPlan(eventId, desired.kind, desired.value)
@@ -108,33 +110,94 @@ class CommandService(
         else -> "设置已更新。"
     }
 
-    private fun helpReply(): String = """
-        可用指令（修改群设置仅限群管理员和群主）：
-        /mieai：显示这份指令帮助。
-        /mieai prob <1-100>：设置当前群 AI 聊天概率，数值越高越容易通过概率触发。
-        /mieai prompt <提示词>：设置当前群独立系统提示词，影响 AI 回复风格和规则。
-        /mieai keyword <关键词>：设置当前群独立触发关键词，覆盖默认关键词。
-        /mieai chat：切换当前群 AI 聊天的启用和禁用状态，禁用后所有触发方式都会停止。
-        /mieai help：显示此帮助说明。
-    """.trimIndent()
+    private fun helpReply(aliases: CommandAliasesConfig): String = buildString {
+        appendLine("可用指令（查看帮助不限成员，修改群设置仅限群管理员和群主）：")
+        appendHelp("/mieai", aliases.mainAlias, "", "显示这份指令帮助。", mainAlias = true)
+        appendHelp("/mieai help", aliases.helpAlias, "", "显示这份完整指令帮助，不修改任何群设置。")
+        appendHelp(
+            "/mieai prob <1-100>",
+            aliases.probAlias,
+            " <1-100>",
+            "设置当前群 AI 聊天概率，数值越高越容易通过概率触发。",
+        )
+        appendHelp(
+            "/mieai prompt <提示词>",
+            aliases.promptAlias,
+            " <提示词>",
+            "设置当前群独立系统提示词，影响 AI 回复风格和规则。",
+        )
+        appendHelp(
+            "/mieai keyword <关键词>",
+            aliases.keywordAlias,
+            " <关键词>",
+            "设置当前群独立触发关键词，并在当前群覆盖默认关键词。",
+        )
+        appendHelp(
+            "/mieai chat",
+            aliases.chatAlias,
+            "",
+            "切换当前群 AI 聊天的启用和禁用状态，禁用后所有触发方式都会停止。",
+        )
+    }.trimEnd()
 
-    private fun parse(content: String): ParsedCommand? {
+    private fun StringBuilder.appendHelp(
+        command: String,
+        alias: String,
+        aliasArguments: String,
+        description: String,
+        mainAlias: Boolean = false,
+    ) {
+        appendLine("$command：$description")
+        if (alias.isEmpty()) return
+        if (mainAlias) {
+            appendLine("  主指令别名：/$alias（可替代 /mieai 前缀，例如 /$alias prob 50）。")
+        } else {
+            appendLine("  指令别名：/$alias$aliasArguments")
+        }
+    }
+
+    private fun parse(content: String, aliases: CommandAliasesConfig): ParsedCommand? {
         val trimmedStart = content.trimStart()
-        if (!trimmedStart.startsWith(PREFIX, ignoreCase = true)) return null
-        if (trimmedStart.length > PREFIX.length && !trimmedStart[PREFIX.length].isWhitespace()) return null
-        val remainder = trimmedStart.substring(PREFIX.length).trim()
+        if (!trimmedStart.startsWith('/')) return null
+        val boundary = trimmedStart.indexOfFirst(Char::isWhitespace)
+        val invocation = if (boundary < 0) trimmedStart else trimmedStart.substring(0, boundary)
+        val invokedName = invocation.drop(1)
+        if (invokedName.isEmpty()) return null
+        val remainder = if (boundary < 0) "" else trimmedStart.substring(boundary).trim()
+
+        if (invokedName.equals(MAIN_COMMAND, ignoreCase = true) ||
+            invokedName.matchesAlias(aliases.mainAlias)
+        ) {
+            return parseSubcommand(remainder)
+        }
+
+        val directName = when {
+            invokedName.matchesAlias(aliases.helpAlias) -> "help"
+            invokedName.matchesAlias(aliases.probAlias) -> "prob"
+            invokedName.matchesAlias(aliases.promptAlias) -> "prompt"
+            invokedName.matchesAlias(aliases.keywordAlias) -> "keyword"
+            invokedName.matchesAlias(aliases.chatAlias) -> "chat"
+            else -> return null
+        }
+        return ParsedCommand(directName, remainder)
+    }
+
+    private fun parseSubcommand(remainder: String): ParsedCommand {
         if (remainder.isEmpty()) return ParsedCommand("", "")
         val boundary = remainder.indexOfFirst(Char::isWhitespace)
-        val name = (if (boundary < 0) remainder else remainder.substring(0, boundary)).lowercase()
+        val name = (if (boundary < 0) remainder else remainder.substring(0, boundary)).lowercase(Locale.ROOT)
         val argument = if (boundary < 0) "" else remainder.substring(boundary).trim()
         return ParsedCommand(name, argument)
     }
+
+    private fun String.matchesAlias(alias: String): Boolean =
+        alias.isNotEmpty() && equals(alias, ignoreCase = true)
 
     private data class ParsedCommand(val name: String, val argument: String)
     private data class DesiredCommand(val kind: String, val value: String)
 
     private companion object {
-        const val PREFIX = "/mieai"
+        const val MAIN_COMMAND = "mieai"
         fun codePointLength(value: String): Int = value.codePointCount(0, value.length)
     }
 }

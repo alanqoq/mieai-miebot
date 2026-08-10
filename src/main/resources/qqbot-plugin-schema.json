@@ -16,6 +16,50 @@
       "required": ["baseUrl", "apiKey", "protocol", "primaryModel", "requestTimeoutSeconds", "fallbackModel", "fallbackDurationMinutes"],
       "additionalProperties": false
     },
+    "commands": {
+      "type": "object",
+      "description": "插件指令别名。所有值都不包含开头的 /，留空表示该指令没有别名；非空别名最多 64 个 Unicode 字符、不能含空白/斜杠/控制字符，并且忽略大小写后必须唯一。",
+      "properties": {
+        "mainAlias": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^(?:$|[^/\\s\\u0000-\\u001F\\u007F-\\u009F]+)$",
+          "description": "/mieai 主指令的别名。用于显示帮助，也可替代 /mieai 前缀；例如填写 ai 后可使用 /ai、/ai help、/ai prob 50。"
+        },
+        "helpAlias": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^(?:$|[^/\\s\\u0000-\\u001F\\u007F-\\u009F]+)$",
+          "description": "/mieai help 的独立顶级别名，不带参数，用于显示完整帮助；例如填写 查询mieai指令 后使用 /查询mieai指令。"
+        },
+        "probAlias": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^(?:$|[^/\\s\\u0000-\\u001F\\u007F-\\u009F]+)$",
+          "description": "/mieai prob <1-100> 的独立顶级别名，用于设置当前群聊天概率；调用别名时仍须追加 1-100。"
+        },
+        "promptAlias": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^(?:$|[^/\\s\\u0000-\\u001F\\u007F-\\u009F]+)$",
+          "description": "/mieai prompt <提示词> 的独立顶级别名，用于设置当前群系统提示词；调用别名时仍须追加提示词。"
+        },
+        "keywordAlias": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^(?:$|[^/\\s\\u0000-\\u001F\\u007F-\\u009F]+)$",
+          "description": "/mieai keyword <关键词> 的独立顶级别名，用于设置当前群触发关键词；调用别名时仍须追加关键词。"
+        },
+        "chatAlias": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^(?:$|[^/\\s\\u0000-\\u001F\\u007F-\\u009F]+)$",
+          "description": "/mieai chat 的独立顶级别名，不带参数，用于切换当前群 AI 聊天的启用或禁用状态。"
+        }
+      },
+      "required": ["mainAlias", "helpAlias", "probAlias", "promptAlias", "keywordAlias", "chatAlias"],
+      "additionalProperties": false
+    },
     "chat": {
       "type": "object",
       "properties": {

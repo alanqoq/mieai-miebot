@@ -20,6 +20,39 @@ enum class AiProtocol(@get:JsonValue val configValue: String) {
     }
 }
 
+data class CommandAliasesConfig(
+    val mainAlias: String = "",
+    val helpAlias: String = "",
+    val probAlias: String = "",
+    val promptAlias: String = "",
+    val keywordAlias: String = "",
+    val chatAlias: String = "",
+) {
+    init {
+        val configured = entries().filter { (_, alias) -> alias.isNotEmpty() }
+        configured.forEach { (field, alias) ->
+            requireCommandAlias(field, alias)
+            requireConfig(!alias.equals("mieai", ignoreCase = true), field, "不能与内置主指令 mieai 冲突")
+        }
+
+        configured.forEachIndexed { index, (field, alias) ->
+            val previous = configured.take(index).firstOrNull { (_, other) ->
+                alias.equals(other, ignoreCase = true)
+            }
+            requireConfig(previous == null, field, "与 ${previous?.first} 重复；所有指令别名必须唯一且不区分大小写")
+        }
+    }
+
+    internal fun entries(): List<Pair<String, String>> = listOf(
+        "commands.mainAlias" to mainAlias,
+        "commands.helpAlias" to helpAlias,
+        "commands.probAlias" to probAlias,
+        "commands.promptAlias" to promptAlias,
+        "commands.keywordAlias" to keywordAlias,
+        "commands.chatAlias" to chatAlias,
+    )
+}
+
 data class ApiConfig(
     val baseUrl: String,
     val apiKey: String,
@@ -136,6 +169,7 @@ data class MieAiBotConfig(
     val chat: ChatConfig,
     val storage: StorageConfig,
     val queue: QueueConfig,
+    val commands: CommandAliasesConfig = CommandAliasesConfig(),
 ) {
     fun immutableCopy(): MieAiBotConfig = copy(
         chat = chat.copy(
@@ -184,6 +218,7 @@ data class MieAiBotConfig(
                 cleanupTime = "04:00",
             ),
             queue = QueueConfig(maxPendingPerGroup = 20),
+            commands = CommandAliasesConfig(),
         ).immutableCopy()
     }
 }
@@ -211,6 +246,13 @@ private fun validateBaseUrl(value: String) {
 
 private fun requireGroupId(field: String, value: String) {
     requireToken("$field key", value, 255)
+}
+
+private fun requireCommandAlias(field: String, value: String) {
+    requireTrimmed(field, value, allowBlank = true, maxCodePoints = 64)
+    requireConfig('/' !in value, field, "填写时不能包含斜杠 /")
+    requireConfig(value.codePoints().noneMatch(Character::isWhitespace), field, "不能包含空白字符")
+    requireConfig(value.codePoints().noneMatch(Character::isISOControl), field, "不能包含控制字符")
 }
 
 private fun requireToken(field: String, value: String, maxCodePoints: Int) {

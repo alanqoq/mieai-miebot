@@ -1,6 +1,6 @@
 # mieai-bot
 
-`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.5`，要求 Java 21、MieBot `1.0.6` 和 Plugin API `3.2.0`。
+`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.6`，要求 Java 21、MieBot `1.0.6` 和 Plugin API `3.2.0`。
 
 ## 构建
 
@@ -16,10 +16,10 @@ cd D:\开发文档\miebot
 ```powershell
 cd D:\开发文档\mieai-qqbot
 $env:JAVA_HOME='E:\JAVA\dragonwell-21.0.11.0.11+10-GA'
-.\gradlew.bat clean test jar --no-configuration-cache
+.\gradlew.bat clean test pf4jSqliteTest jar --no-configuration-cache --no-daemon
 ```
 
-输出文件为 `build/libs/mieai-bot-0.0.5.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
+输出文件为 `build/libs/mieai-bot-0.0.6.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
 
 ## 安装
 
@@ -36,18 +36,34 @@ $env:JAVA_HOME='E:\JAVA\dragonwell-21.0.11.0.11+10-GA'
 
 普通群消息的概率和关键词触发依赖 QQ 开放平台启用“接收所有消息”，并要求机器人订阅 `GROUP_AND_C2C_EVENT`；仅收到 @ 消息时，请先检查该平台权限和 Gateway Intents。
 
-## 群管理命令
+## 指令与别名
 
-只有当前群的群主和管理员可以执行，命令名与子命令不区分大小写：
+原始指令始终有效，命令名与子命令不区分大小写。`/mieai` 和 `/mieai help` 可由所有群成员查看；修改群设置的四条指令仅限当前群的群主和管理员使用。
 
-```text
-/mieai prob <1-100>
-/mieai prompt <系统提示词>
-/mieai keyword <触发关键词>
-/mieai chat
+| 原始指令 | 用途 | 别名配置 | 设置别名后的调用形式 |
+| --- | --- | --- | --- |
+| `/mieai` | 显示所有指令及用途；主别名还可以替代 `/mieai` 前缀 | `commands.mainAlias` | `/别名`、`/别名 help`、`/别名 prob 50` 等 |
+| `/mieai help` | 显示完整帮助，不修改群设置 | `commands.helpAlias` | `/别名` |
+| `/mieai prob <1-100>` | 设置当前群 AI 聊天概率 | `commands.probAlias` | `/别名 <1-100>` |
+| `/mieai prompt <提示词>` | 设置当前群独立系统提示词 | `commands.promptAlias` | `/别名 <提示词>` |
+| `/mieai keyword <关键词>` | 设置当前群独立触发关键词，并覆盖该群的默认关键词 | `commands.keywordAlias` | `/别名 <关键词>` |
+| `/mieai chat` | 切换当前群 AI 聊天的启用或禁用状态 | `commands.chatAlias` | `/别名` |
+
+别名默认全部为空，空字符串表示不启用该别名。配置值只填写指令名称本身，不填写开头的 `/`：
+
+```yaml
+commands:
+  mainAlias: "ai"
+  helpAlias: "查询mieai指令"
+  probAlias: "设置概率"
+  promptAlias: "设置提示词"
+  keywordAlias: "设置关键词"
+  chatAlias: "切换聊天"
 ```
 
-指令用途：`prob` 设置当前群 AI 聊天概率；`prompt` 设置当前群独立系统提示词；`keyword` 设置当前群独立触发关键词并覆盖默认关键词；`chat` 切换当前群 AI 聊天的启用或禁用状态。发送 `/mieai` 或 `/mieai help` 可以查看逐条说明。
+以上示例会启用 `/ai`、`/查询mieai指令`、`/设置概率 50`、`/设置提示词 请简洁回答`、`/设置关键词 小助手` 和 `/切换聊天`。因为 `mainAlias` 可以替代主前缀，所以 `/ai help`、`/ai prob 50`、`/ai prompt ...`、`/ai keyword ...`、`/ai chat` 也有效；其他五个别名都是独立的顶级指令，不需要再加 `/mieai`。
+
+每个非空别名最多 64 个 Unicode 字符，不能包含 `/`、空白字符或控制字符，不能与内置主指令 `mieai` 冲突；所有别名忽略大小写后必须唯一。设置别名不会改变原指令权限，发送 `/mieai`、`/mieai help` 或对应帮助别名时会显示当前已经启用的别名。
 
 `/mieai chat` 在启用和禁用之间切换。所有成功修改都会立即原子写回 `config.yml`；提示词或关键词超限时不会保存，并使用配置中的提醒文本引用回复。
 

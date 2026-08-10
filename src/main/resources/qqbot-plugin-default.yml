@@ -15,6 +15,21 @@ api:
   # 切换到备用模型后持续使用的分钟数，范围 1-525600。
   fallbackDurationMinutes: 30
 
+# 指令别名设置。所有别名最多 64 个 Unicode 字符，彼此不能重复，填写时不要包含开头的 /；留空表示不启用该别名。
+commands:
+  # /mieai 主指令的别名，用于显示帮助，也可替代 /mieai 前缀。示例填 ai 后可使用 /ai、/ai help 或 /ai prob 50。
+  mainAlias: ""
+  # /mieai help 的独立别名，不带参数，用于查看完整指令说明。示例填 查询mieai指令 后可使用 /查询mieai指令。
+  helpAlias: ""
+  # /mieai prob <1-100> 的独立别名，用于设置当前群聊天概率。使用别名时仍要在后面填写 1-100。
+  probAlias: ""
+  # /mieai prompt <提示词> 的独立别名，用于设置当前群系统提示词。使用别名时仍要在后面填写提示词。
+  promptAlias: ""
+  # /mieai keyword <关键词> 的独立别名，用于设置当前群触发关键词。使用别名时仍要在后面填写关键词。
+  keywordAlias: ""
+  # /mieai chat 的独立别名，不带参数，用于切换当前群 AI 聊天的启用或禁用状态。
+  chatAlias: ""
+
 # 群聊触发、提示词、关键词和上文设置。所有群键都填写 QQ 提供的 group_openid 字符串。
 chat:
   # 全局随机聊天概率，单位为百分比，范围 0-100；未单独设置的群使用该值。
