@@ -1,7 +1,5 @@
 package com.mieai.bot
 
-import com.mieai.bot.config.MieAiBotConfig
-import com.mieai.bot.config.MieAiConfigCodec
 import com.mieai.qqbot.plugin.testkit.PluginTestContext
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -35,7 +33,7 @@ class MieAiEngineTest {
     }
 
     private fun withEngine(block: (MieAiEngine, PluginTestContext) -> Unit) {
-        val yaml = MieAiConfigCodec.render(MieAiBotConfig.defaults())
+        val yaml = requireNotNull(javaClass.getResource("/qqbot-plugin-default.yml")).readText()
         PluginTestContext("mieai-bot", yaml, "config.yml").use { fixture ->
             MieAiEngine(fixture.context).use { engine -> block(engine, fixture) }
         }

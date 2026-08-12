@@ -1,6 +1,5 @@
 package com.mieai.bot
 
-import com.mieai.bot.config.MieAiBotConfig
 import com.mieai.bot.config.MieAiConfigCodec
 import com.mieai.qqbot.plugin.api.GroupMemberRole
 import com.mieai.qqbot.plugin.api.InboundMessage
@@ -30,7 +29,7 @@ class PluginIntegrationTest {
 
     @Test
     fun registersOneHandlerAndQuotesAnAdministratorCommandReply() {
-        val yaml = MieAiConfigCodec.render(MieAiBotConfig.defaults())
+        val yaml = requireNotNull(javaClass.getResource("/qqbot-plugin-default.yml")).readText()
         PluginTestContext("mieai-bot", yaml, "config.yml").use { fixture ->
             val plugin = MieAiBotPluginFactory().create(fixture.context)
             plugin.start()
@@ -70,8 +69,9 @@ class PluginIntegrationTest {
 
     @Test
     fun genericGroupMessageWithCurrentBotMentionStartsChat() {
-        val config = MieAiBotConfig.defaults().copy(
-            chat = MieAiBotConfig.defaults().chat.copy(defaultProbability = 0),
+        val defaults = packagedDefaultConfig()
+        val config = defaults.copy(
+            chat = defaults.chat.copy(defaultProbability = 0),
         )
         val yaml = MieAiConfigCodec.render(config)
         PluginTestContext("mieai-bot-at-${UUID.randomUUID()}", yaml, "config.yml").use { fixture ->

@@ -441,7 +441,7 @@ class HistoryDatabase(
                 it.executeUpdate()
             }
             connection.prepareStatement(
-                "SELECT command_kind, command_value, completed FROM command_plans WHERE event_id=?",
+                "SELECT command_kind, command_value FROM command_plans WHERE event_id=?",
             ).use {
                 it.setString(1, eventId.toString())
                 it.executeQuery().use { rows ->
@@ -450,19 +450,10 @@ class HistoryDatabase(
                         eventId,
                         rows.getString("command_kind"),
                         rows.getString("command_value"),
-                        rows.getInt("completed") != 0,
                     )
                 }
             }
         }
-
-    fun completeCommandPlan(eventId: UUID) = lock.withLock {
-        connection.prepareStatement("UPDATE command_plans SET completed=1, updated_at=? WHERE event_id=?").use {
-            it.setLong(1, Instant.now().toEpochMilli())
-            it.setString(2, eventId.toString())
-            it.executeUpdate()
-        }
-    }
 
     fun openDeliveries(): List<OpenDelivery> = lock.withLock {
         connection.prepareStatement(
@@ -701,7 +692,6 @@ class HistoryDatabase(
                     val id = rows.getLong("id")
                     messages[id] = StoredMessage(
                         id,
-                        rows.getString("event_key"),
                         rows.getString("group_id"),
                         rows.getString("author_id"),
                         MessageDirection.valueOf(rows.getString("direction")),
@@ -712,8 +702,6 @@ class HistoryDatabase(
                         rows.getInt("had_reference") != 0,
                         Instant.ofEpochMilli(rows.getLong("created_at")),
                         rows.getInt("placeholder") != 0,
-                        rows.getString("outbox_job_id")?.let { runCatching { UUID.fromString(it) }.getOrNull() },
-                        rows.getString("delivery_state"),
                         emptyList(),
                     )
                 }

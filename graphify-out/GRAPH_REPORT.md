@@ -1,16 +1,16 @@
-# Graph Report - mieai-qqbot  (2026-08-10)
+# Graph Report - mieai-qqbot  (2026-08-12)
 
 ## Corpus Check
-- 37 files · ~14,171 words
+- 38 files · ~13,911 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 569 nodes · 809 edges · 44 communities (35 shown, 9 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 46 edges (avg confidence: 0.81)
+- 563 nodes · 889 edges · 33 communities (32 shown, 1 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fd911245`
+- Built from commit: `7de8d9ed`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -22,23 +22,19 @@
 - OpenAiChatProvider
 - MieAiEngine
 - properties
-- CommandService
+- PluginEvent
 - Default Plugin Configuration
-- MieAiBotConfig
+- packagedDefaultConfig
 - Pf4jSqliteParentLoaderIntegrationTest
 - ModelFailoverManager
 - DeliveryTracker
 - properties
-- .fixture
+- CommandService
 - GroupChatQueue
 - items
-- .insertInbound
-- HistoryModels.kt
+- ImageDownloader
 - properties
-- ImagePersistenceService
-- TriggerDeciderTest
 - gradlew
-- .sendQuoted
 - defaultKeyword
 - defaultProbability
 - defaultSystemPrompt
@@ -50,37 +46,30 @@
 - groupKeywords
 - groupProbabilities
 - AGENTS.md
-- StoredMessage
-- NewInboundMessage
-- ImageDownloader
-- ChatTaskStatus
-- .differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask
-- BotMentionParser
-- BotMentionParserTest
 
 ## God Nodes (most connected - your core abstractions)
-1. `HistoryDatabase` - 45 edges
-2. `MieAiEngine` - 16 edges
-3. `OpenAiChatProvider` - 15 edges
-4. `required` - 14 edges
-5. `CommandService` - 13 edges
-6. `Default Plugin Configuration` - 13 edges
-7. `CommandAliasesConfig` - 11 edges
-8. `ModelFailoverManager` - 10 edges
-9. `MieAiBotConfig` - 10 edges
-10. `Pf4jSqliteParentLoaderIntegrationTest` - 10 edges
+1. `HistoryDatabase` - 53 edges
+2. `MieAiEngine` - 27 edges
+3. `packagedDefaultConfig()` - 19 edges
+4. `OpenAiChatProvider` - 16 edges
+5. `CommandService` - 16 edges
+6. `required` - 14 edges
+7. `Default Plugin Configuration` - 13 edges
+8. `CommandAliasesConfig` - 12 edges
+9. `ModelFailoverManager` - 11 edges
+10. `GroupChatQueue` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `config.yml` --semantically_similar_to--> `Default Plugin Configuration`  [INFERRED] [semantically similar]
   README.md → src/main/resources/qqbot-plugin-default.yml
-- `api.protocol` --semantically_similar_to--> `openai-old Protocol`  [INFERRED] [semantically similar]
-  src/main/resources/qqbot-plugin-default.yml → README.md
 - `api.protocol` --semantically_similar_to--> `openai-new Protocol`  [INFERRED] [semantically similar]
+  src/main/resources/qqbot-plugin-default.yml → README.md
+- `api.protocol` --semantically_similar_to--> `openai-old Protocol`  [INFERRED] [semantically similar]
   src/main/resources/qqbot-plugin-default.yml → README.md
 - `api.primaryModel` --conceptually_related_to--> `mimo-v2.5 Model`  [INFERRED]
   src/main/resources/qqbot-plugin-default.yml → README.md
-- `MieAiBotPlugin` --references--> `MieAiEngine`  [EXTRACTED]
-  src/main/kotlin/com/mieai/bot/MieAiBotPlugin.kt → src/main/kotlin/com/mieai/bot/MieAiEngine.kt
+- `MieAiEngine` --calls--> `ModelFailoverManager`  [EXTRACTED]
+  src/main/kotlin/com/mieai/bot/MieAiEngine.kt → src/main/kotlin/com/mieai/bot/ai/ModelFailoverManager.kt
 
 ## Import Cycles
 - None detected.
@@ -89,11 +78,11 @@
 - **API Configuration Parameters** — src_main_resources_qqbot_plugin_default_yml_api_baseurl, src_main_resources_qqbot_plugin_default_yml_api_apikey, src_main_resources_qqbot_plugin_default_yml_api_protocol, src_main_resources_qqbot_plugin_default_yml_api_primarymodel, src_main_resources_qqbot_plugin_default_yml_api_fallbackmodel [EXTRACTED 1.00]
 - **Chat Configuration Parameters** — src_main_resources_qqbot_plugin_default_yml_chat_defaultprobability, src_main_resources_qqbot_plugin_default_yml_chat_defaultsystemprompt, src_main_resources_qqbot_plugin_default_yml_chat_defaultkeyword, src_main_resources_qqbot_plugin_default_yml_chat_imageunderstandingenabled [EXTRACTED 1.00]
 
-## Communities (44 total, 9 thin omitted)
+## Communities (33 total, 1 thin omitted)
 
 ### Community 0 - "HistoryDatabase"
-Cohesion: 0.17
-Nodes (4): Connection, HistoryDatabase, AutoCloseable, ChatTaskRecord
+Cohesion: 0.06
+Nodes (25): Connection, OutboundService, bindAll(), HistoryDatabase, AutoCloseable, T, setNullableString(), singleLongOrNull() (+17 more)
 
 ### Community 1 - "required"
 Cohesion: 0.04
@@ -105,51 +94,51 @@ Nodes (38): cleanupDeleteBatchSize, cleanupTime, defaultMaxMessagesPerGroup, gro
 
 ### Community 3 - "MieAiBotConfig.kt"
 Cohesion: 0.09
-Nodes (25): AiProtocol, OPENAI_NEW, OPENAI_OLD, ApiConfig, ChatConfig, codePointLength(), ConfigValidationException, defaults() (+17 more)
+Nodes (24): AiProtocol, OPENAI_NEW, OPENAI_OLD, ApiConfig, ChatConfig, codePointLength(), ConfigValidationException, immutableSortedMap() (+16 more)
 
 ### Community 4 - "OpenAiChatProvider"
-Cohesion: 0.12
-Nodes (14): JsonNode, ObjectNode, RuntimeException, ChatApiException, ChatCompletionRequest, ChatProvider, ChatRole, ASSISTANT (+6 more)
+Cohesion: 0.14
+Nodes (10): JsonNode, ObjectNode, RuntimeException, ChatApiException, ChatCompletionRequest, ChatTurn, MimoModelCapabilities, OpenAiChatProvider (+2 more)
 
 ### Community 5 - "MieAiEngine"
-Cohesion: 0.09
-Nodes (13): EventSubscription, PluginEvent, PluginTestContext, BotPlugin, MieAiBotPlugin, BotPlugin, BotPluginFactory, PluginRuntimeContext (+5 more)
+Cohesion: 0.08
+Nodes (13): EventSubscription, ChatRole, ASSISTANT, USER, AttachmentParser, BotMentionParser, ImageAttachment, ImagePersistenceService (+5 more)
 
 ### Community 6 - "properties"
 Cohesion: 0.07
 Nodes (30): openai-new, openai-old, properties, maxLength, type, maxLength, minLength, pattern (+22 more)
 
-### Community 7 - "CommandService"
-Cohesion: 0.22
-Nodes (8): GroupMemberRole, codePointLength(), CommandOutcome, CommandService, DesiredCommand, Handled, NotCommand, ParsedCommand
+### Community 7 - "PluginEvent"
+Cohesion: 0.18
+Nodes (8): PluginEvent, PluginTestContext, BotPlugin, BotPluginFactory, PluginRuntimeContext, MieAiBotPluginFactory, MieAiEngineTest, PluginIntegrationTest
 
 ### Community 8 - "Default Plugin Configuration"
 Cohesion: 0.10
 Nodes (23): config.yml, history.db, Java 21, mieai-bot Plugin, MieBot Framework, mimo-v2.5 Model, openai-new Protocol, openai-old Protocol (+15 more)
 
-### Community 9 - "MieAiBotConfig"
-Cohesion: 0.16
-Nodes (10): MieAiBotConfig, ConfigParseException, IllegalArgumentException, T, V, MieAiConfigCodec, load(), MieAiConfigStore (+2 more)
+### Community 9 - "packagedDefaultConfig"
+Cohesion: 0.07
+Nodes (16): CommandAliasesConfig, MieAiBotConfig, ConfigParseException, IllegalArgumentException, T, V, MieAiConfigCodec, MieAiConfigStore (+8 more)
 
 ### Community 10 - "Pf4jSqliteParentLoaderIntegrationTest"
-Cohesion: 0.21
-Nodes (7): FakeEventService, Fixture, AutoCloseable, BotPluginFactory, Fixture, PluginRuntimeContext, Pf4jSqliteParentLoaderIntegrationTest
+Cohesion: 0.22
+Nodes (8): BotId, FakeEventService, Fixture, AutoCloseable, BotPluginFactory, Fixture, PluginRuntimeContext, Pf4jSqliteParentLoaderIntegrationTest
 
 ### Community 11 - "ModelFailoverManager"
 Cohesion: 0.23
 Nodes (6): FallbackWindow, T, ModelFailoverManager, ModelSelection, RouteKey, ModelFailoverManagerTest
 
 ### Community 12 - "DeliveryTracker"
-Cohesion: 0.29
+Cohesion: 0.31
 Nodes (3): java, DeliveryTracker, OpenDelivery
 
 ### Community 13 - "properties"
 Cohesion: 0.05
 Nodes (42): chatAlias, helpAlias, keywordAlias, mainAlias, probAlias, promptAlias, description, maxLength (+34 more)
 
-### Community 14 - ".fixture"
-Cohesion: 0.12
-Nodes (6): CommandAliasesConfig, CommandServiceTest, Fixture, AutoCloseable, Fixture, MieAiConfigCodecTest
+### Community 14 - "CommandService"
+Cohesion: 0.22
+Nodes (7): GroupMemberRole, CommandOutcome, CommandService, DesiredCommand, Handled, NotCommand, ParsedCommand
 
 ### Community 15 - "GroupChatQueue"
 Cohesion: 0.39
@@ -159,13 +148,9 @@ Nodes (4): GroupChatQueue, AutoCloseable, Worker, WorkerSelection
 Cohesion: 0.25
 Nodes (8): items, maxItems, type, maxLength, minLength, pattern, type, disabledGroups
 
-### Community 17 - ".insertInbound"
-Cohesion: 0.17
-Nodes (5): AttachmentParser, T, setNullableString(), singleLongOrNull(), ImageAttachment
-
-### Community 18 - "HistoryModels.kt"
-Cohesion: 0.15
-Nodes (8): bindAll(), CleanupPolicy, CleanupResult, CommandPlan, MessageDirection, BOT, MEMBER, PendingImage
+### Community 17 - "ImageDownloader"
+Cohesion: 0.31
+Nodes (4): ByteArray, PendingImage, ImageDownloader, AutoCloseable
 
 ### Community 19 - "properties"
 Cohesion: 0.33
@@ -215,33 +200,25 @@ Nodes (3): additionalProperties, type, groupKeywords
 Cohesion: 0.67
 Nodes (3): additionalProperties, type, groupProbabilities
 
-### Community 39 - "ImageDownloader"
-Cohesion: 0.38
-Nodes (3): ByteArray, ImageDownloader, AutoCloseable
-
-### Community 40 - "ChatTaskStatus"
-Cohesion: 0.33
-Nodes (6): ChatTaskStatus, CANCELLED, COMPLETED, FAILED, PENDING, RUNNING
-
 ## Knowledge Gaps
-- **182 isolated node(s):** `USER`, `ASSISTANT`, `NotCommand`, `OPENAI_OLD`, `OPENAI_NEW` (+177 more)
+- **186 isolated node(s):** `USER`, `ASSISTANT`, `NotCommand`, `OPENAI_OLD`, `OPENAI_NEW` (+181 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HistoryDatabase` connect `HistoryDatabase` to `StoredMessage`, `NewInboundMessage`, `.differentGroupsRunInParallelWhileWaitingCapacityExcludesTheRunningTask`, `DeliveryTracker`, `.fixture`, `.insertInbound`, `HistoryModels.kt`?**
-  _High betweenness centrality (0.147) - this node is a cross-community bridge._
+- **Why does `HistoryDatabase` connect `HistoryDatabase` to `OpenAiChatProvider`, `MieAiEngine`, `packagedDefaultConfig`, `DeliveryTracker`, `CommandService`, `GroupChatQueue`, `ImageDownloader`?**
+  _High betweenness centrality (0.115) - this node is a cross-community bridge._
 - **Why does `properties` connect `required` to `properties`, `properties`?**
-  _High betweenness centrality (0.105) - this node is a cross-community bridge._
-- **Why does `MieAiBotConfig` connect `MieAiBotConfig` to `MieAiBotConfig.kt`, `.fixture`?**
-  _High betweenness centrality (0.077) - this node is a cross-community bridge._
+  _High betweenness centrality (0.107) - this node is a cross-community bridge._
+- **Why does `MieAiEngine` connect `MieAiEngine` to `HistoryDatabase`, `OpenAiChatProvider`, `PluginEvent`, `ModelFailoverManager`, `DeliveryTracker`, `CommandService`, `GroupChatQueue`, `ImageDownloader`?**
+  _High betweenness centrality (0.069) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `OpenAiChatProvider` (e.g. with `.everyMimoV25PrefixUsesOpenAiBearerChatCompletionsAndMultipleBase64Images()` and `.usesChatCompletionsAndBearerForOpenAiOld()`) actually correct?**
   _`OpenAiChatProvider` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `USER`, `ASSISTANT`, `NotCommand` to the rest of the system?**
-  _182 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _186 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `HistoryDatabase` be split into smaller, more focused modules?**
+  _Cohesion score 0.055900621118012424 - nodes in this community are weakly interconnected._
 - **Should `required` be split into smaller, more focused modules?**
   _Cohesion score 0.041666666666666664 - nodes in this community are weakly interconnected._
-- **Should `properties` be split into smaller, more focused modules?**
-  _Cohesion score 0.05263157894736842 - nodes in this community are weakly interconnected._

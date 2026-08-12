@@ -5,6 +5,7 @@ import com.mieai.bot.config.MieAiBotConfig
 import com.mieai.bot.config.MieAiConfigCodec
 import com.mieai.bot.config.MieAiConfigStore
 import com.mieai.bot.history.HistoryDatabase
+import com.mieai.bot.packagedDefaultConfig
 import com.mieai.qqbot.plugin.api.GroupMemberRole
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -29,7 +30,7 @@ class CommandServiceTest {
             keywordAlias = "设置关键词",
             chatAlias = "切换聊天",
         )
-        fixture(MieAiBotConfig.defaults().copy(commands = aliases)).use { fixture ->
+        fixture(packagedDefaultConfig().copy(commands = aliases)).use { fixture ->
             val help = fixture.service.handle(
                 UUID.randomUUID(),
                 "group-openid",
@@ -81,7 +82,7 @@ class CommandServiceTest {
             keywordAlias = "设置关键词",
             chatAlias = "切换聊天",
         )
-        fixture(MieAiBotConfig.defaults().copy(commands = aliases)).use { fixture ->
+        fixture(packagedDefaultConfig().copy(commands = aliases)).use { fixture ->
             val help = fixture.service.handle(
                 UUID.randomUUID(),
                 "group-openid",
@@ -106,7 +107,7 @@ class CommandServiceTest {
     @Test
     fun mainAliasCanReplaceMieAiPrefixForEverySubcommand() {
         val aliases = CommandAliasesConfig(mainAlias = "AI")
-        fixture(MieAiBotConfig.defaults().copy(commands = aliases)).use { fixture ->
+        fixture(packagedDefaultConfig().copy(commands = aliases)).use { fixture ->
             val help = fixture.service.handle(
                 UUID.randomUUID(),
                 "group-openid",
@@ -184,7 +185,7 @@ class CommandServiceTest {
 
     @Test
     fun membersCannotMutateGroupConfiguration() {
-        val config = MieAiBotConfig.defaults().copy(
+        val config = packagedDefaultConfig().copy(
             commands = CommandAliasesConfig(probAlias = "设置概率"),
         )
         fixture(config).use { fixture ->
@@ -200,7 +201,7 @@ class CommandServiceTest {
         }
     }
 
-    private fun fixture(config: MieAiBotConfig = MieAiBotConfig.defaults()): Fixture {
+    private fun fixture(config: MieAiBotConfig = packagedDefaultConfig()): Fixture {
         val configFile = temporaryDirectory.resolve("config-${UUID.randomUUID()}.yml")
         val content = MieAiConfigCodec.render(config)
         Files.writeString(configFile, content)

@@ -9,23 +9,6 @@ object TriggerDecider {
         text: String?,
         hasImages: Boolean,
         config: ChatConfig,
-        randomPercent: () -> Int,
-    ): Boolean = shouldTrigger(
-        eventType,
-        groupId,
-        text,
-        hasImages,
-        config,
-        isBotMentioned = false,
-        randomPercent = randomPercent,
-    )
-
-    fun shouldTrigger(
-        eventType: String,
-        groupId: String,
-        text: String?,
-        hasImages: Boolean,
-        config: ChatConfig,
         isBotMentioned: Boolean,
         randomPercent: () -> Int,
     ): Boolean {

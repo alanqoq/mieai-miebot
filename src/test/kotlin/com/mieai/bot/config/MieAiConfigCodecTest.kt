@@ -1,5 +1,6 @@
 package com.mieai.bot.config
 
+import com.mieai.bot.packagedDefaultConfig
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.nio.file.Files
@@ -11,15 +12,8 @@ import kotlin.test.assertTrue
 
 class MieAiConfigCodecTest {
     @Test
-    fun `packaged default config parses to code defaults`() {
-        val content = requireNotNull(javaClass.getResource("/qqbot-plugin-default.yml")).readText()
-
-        assertEquals(MieAiBotConfig.defaults(), MieAiConfigCodec.parse(content))
-    }
-
-    @Test
     fun `render emits comments and round trips all dynamic group values`() {
-        val defaults = MieAiBotConfig.defaults()
+        val defaults = packagedDefaultConfig()
         val configured = defaults.copy(
             commands = defaults.commands.copy(
                 mainAlias = "ai",
@@ -49,7 +43,8 @@ class MieAiConfigCodecTest {
 
     @Test
     fun `legacy config without commands section uses empty aliases`() {
-        val rendered = MieAiConfigCodec.render(MieAiBotConfig.defaults())
+        val defaults = packagedDefaultConfig()
+        val rendered = MieAiConfigCodec.render(defaults)
         val commandsStart = rendered.indexOf("# 指令别名设置。")
         val chatStart = rendered.indexOf("# 群聊触发、提示词、关键词和上文设置。")
         val legacy = rendered.removeRange(commandsStart, chatStart)
@@ -57,12 +52,12 @@ class MieAiConfigCodecTest {
         val parsed = MieAiConfigCodec.parse(legacy)
 
         assertEquals(CommandAliasesConfig(), parsed.commands)
-        assertEquals(MieAiBotConfig.defaults(), parsed)
+        assertEquals(defaults, parsed)
     }
 
     @Test
     fun `parser rejects unknown and duplicate fields`() {
-        val valid = MieAiConfigCodec.render(MieAiBotConfig.defaults())
+        val valid = MieAiConfigCodec.render(packagedDefaultConfig())
         assertFailsWith<ConfigParseException> {
             MieAiConfigCodec.parse(valid.replace("api:\n", "api:\n  unknown: true\n"))
         }
@@ -73,7 +68,7 @@ class MieAiConfigCodecTest {
 
     @Test
     fun `validation enforces domain protocol group maps and Unicode code points`() {
-        val defaults = MieAiBotConfig.defaults()
+        val defaults = packagedDefaultConfig()
         assertFailsWith<ConfigValidationException> {
             defaults.copy(api = defaults.api.copy(baseUrl = "https://api.openai.com/v1"))
         }
@@ -110,9 +105,9 @@ class MieAiConfigCodecTest {
     @Test
     fun `store writes a complete config before replacing its atomic snapshot`(@TempDir directory: Path) {
         val path = directory.resolve("config.yml")
-        val defaults = MieAiBotConfig.defaults()
+        val defaults = packagedDefaultConfig()
         Files.writeString(path, MieAiConfigCodec.render(defaults))
-        val store = MieAiConfigStore.load(path)
+        val store = MieAiConfigStore.open(path, Files.readString(path))
 
         val updated = store.update { current ->
             current.copy(chat = current.chat.copy(groupProbabilities = mapOf("group-1" to 35)))

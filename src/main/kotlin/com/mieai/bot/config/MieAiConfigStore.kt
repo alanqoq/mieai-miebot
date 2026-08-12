@@ -24,14 +24,6 @@ class MieAiConfigStore private constructor(
 
     fun snapshot(): MieAiBotConfig = current.get()
 
-    fun reload(): MieAiBotConfig = writeLock.withLock {
-        val loaded = MieAiConfigCodec.parse(Files.readString(configurationFile, StandardCharsets.UTF_8))
-        current.set(loaded)
-        loaded
-    }
-
-    fun replace(config: MieAiBotConfig): MieAiBotConfig = update { config }
-
     fun update(transform: (MieAiBotConfig) -> MieAiBotConfig): MieAiBotConfig = writeLock.withLock {
         val next = transform(current.get()).immutableCopy()
         writeAtomically(configurationFile, MieAiConfigCodec.render(next))
@@ -43,12 +35,6 @@ class MieAiConfigStore private constructor(
         @JvmStatic
         fun open(configurationFile: Path, configurationContent: String): MieAiConfigStore =
             MieAiConfigStore(configurationFile, MieAiConfigCodec.parse(configurationContent))
-
-        @JvmStatic
-        fun load(configurationFile: Path): MieAiConfigStore {
-            val normalized = configurationFile.toAbsolutePath().normalize()
-            return open(normalized, Files.readString(normalized, StandardCharsets.UTF_8))
-        }
 
         private fun writeAtomically(target: Path, content: String) {
             val parent = target.parent ?: throw IOException("配置文件必须有父目录")

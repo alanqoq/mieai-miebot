@@ -69,7 +69,6 @@ class CommandService(
 
         val plan = database.commandPlan(eventId, desired.kind, desired.value)
         val disabled = applyPlan(groupId, plan.kind, plan.value)
-        database.completeCommandPlan(eventId)
         if (disabled == true) database.cancelPendingTasks(groupId)
         return CommandOutcome.Handled(successReply(plan.kind, plan.value), disabled)
     }

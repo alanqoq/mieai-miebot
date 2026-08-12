@@ -35,7 +35,6 @@ data class NewInboundMessage(
 
 data class StoredMessage(
     val id: Long,
-    val eventKey: String,
     val groupId: String,
     val authorId: String?,
     val direction: MessageDirection,
@@ -46,8 +45,6 @@ data class StoredMessage(
     val hadReference: Boolean,
     val createdAt: Instant,
     val placeholder: Boolean,
-    val outboxJobId: UUID?,
-    val deliveryState: String?,
     val images: List<StoredImage>,
 ) {
     fun hasModelContent(): Boolean = !text.isNullOrBlank() || images.isNotEmpty()
@@ -86,7 +83,6 @@ data class CommandPlan(
     val eventId: UUID,
     val kind: String,
     val value: String,
-    val completed: Boolean,
 )
 
 data class CleanupPolicy(

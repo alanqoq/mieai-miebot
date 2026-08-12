@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.mieai.bot"
-version = providers.gradleProperty("pluginVersion").orElse("0.0.6").get()
+version = providers.gradleProperty("pluginVersion").orElse("0.0.7").get()
 
 java {
     toolchain {

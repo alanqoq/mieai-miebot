@@ -25,10 +25,6 @@ data class ChatCompletionRequest(
     val imageUnderstandingEnabled: Boolean,
 )
 
-fun interface ChatProvider {
-    fun complete(request: ChatCompletionRequest): String
-}
-
 class ChatApiException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)
 
 object MimoModelCapabilities {

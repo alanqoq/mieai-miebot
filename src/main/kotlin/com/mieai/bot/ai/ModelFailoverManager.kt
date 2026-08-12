@@ -46,9 +46,6 @@ class ModelFailoverManager(
         }
     }
 
-    fun currentSelection(primaryModel: String, fallbackModel: String): ModelSelection =
-        select(primaryModel.trim(), fallbackModel.trim())
-
     private fun select(primary: String, fallback: String): ModelSelection = synchronized(this) {
         val requestedRoute = RouteKey(primary, fallback)
         if (routeKey != requestedRoute) {
@@ -58,18 +55,18 @@ class ModelFailoverManager(
         }
         if (!canUseFallback(primary, fallback)) {
             window = null
-            return@synchronized ModelSelection(primary, false, null, primaryEpoch)
+            return@synchronized ModelSelection(primary, false, primaryEpoch)
         }
         val active = window
         val now = clockMillis()
         if (active != null && active.route == requestedRoute && now < active.untilMillis) {
-            return@synchronized ModelSelection(fallback, true, active.untilMillis, active.primaryEpoch)
+            return@synchronized ModelSelection(fallback, true, active.primaryEpoch)
         }
         if (active != null) {
             window = null
             advanceEpoch()
         }
-        ModelSelection(primary, false, null, primaryEpoch)
+        ModelSelection(primary, false, primaryEpoch)
     }
 
     private fun activate(primary: String, fallback: String, minutes: Long, requestEpoch: Long): Boolean =
@@ -101,9 +98,8 @@ class ModelFailoverManager(
     private data class FallbackWindow(val route: RouteKey, val untilMillis: Long, val primaryEpoch: Long)
 }
 
-data class ModelSelection(
+private data class ModelSelection(
     val model: String,
     val usingFallback: Boolean,
-    val fallbackUntilMillis: Long?,
     val primaryEpoch: Long,
 )

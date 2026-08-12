@@ -7,3 +7,5 @@ out/
 *.db
 *.db-shm
 *.db-wal
+graphify-out/cache/
+graphify-out/20??-??-??/

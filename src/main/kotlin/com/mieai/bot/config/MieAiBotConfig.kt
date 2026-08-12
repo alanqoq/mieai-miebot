@@ -149,8 +149,6 @@ data class StorageConfig(
         }
     }
 
-    fun maximumFor(groupId: String): Int = groupMaxMessages[groupId] ?: defaultMaxMessagesPerGroup
-
     private companion object {
         val CLEANUP_TIME = Regex("(?:[01]\\d|2[0-3]):[0-5]\\d")
     }
@@ -180,47 +178,6 @@ data class MieAiBotConfig(
         ),
         storage = storage.copy(groupMaxMessages = immutableSortedMap(storage.groupMaxMessages)),
     )
-
-    companion object {
-        @JvmStatic
-        fun defaults(): MieAiBotConfig = MieAiBotConfig(
-            api = ApiConfig(
-                baseUrl = "https://api.openai.com",
-                apiKey = "",
-                protocol = AiProtocol.OPENAI_OLD,
-                primaryModel = "gpt-4.1-mini",
-                requestTimeoutSeconds = 120,
-                fallbackModel = "",
-                fallbackDurationMinutes = 30,
-            ),
-            chat = ChatConfig(
-                defaultProbability = 5,
-                groupProbabilities = emptyMap(),
-                defaultSystemPrompt = "你是QQ群聊中的 AI 助手。请自然、简洁地参与聊天，不要声称看到了未提供的内容。",
-                groupSystemPrompts = emptyMap(),
-                promptMaxLength = 2_000,
-                promptTooLongReply = "当前群系统提示词超过允许长度，未保存。",
-                defaultKeyword = "mieai",
-                groupKeywords = emptyMap(),
-                keywordMaxLength = 64,
-                keywordTooLongReply = "当前群关键词超过允许长度，未保存。",
-                disabledGroups = emptySet(),
-                imageUnderstandingEnabled = false,
-                maxContextMessages = 20,
-            ),
-            storage = StorageConfig(
-                maxBase64ImageBytes = 10L * 1024L * 1024L,
-                maxMessagesTotal = 200_000,
-                defaultMaxMessagesPerGroup = 20_000,
-                groupMaxMessages = emptyMap(),
-                maxMessageAgeDays = 30,
-                cleanupDeleteBatchSize = 1_000,
-                cleanupTime = "04:00",
-            ),
-            queue = QueueConfig(maxPendingPerGroup = 20),
-            commands = CommandAliasesConfig(),
-        ).immutableCopy()
-    }
 }
 
 class ConfigValidationException(

@@ -17,8 +17,8 @@ import java.util.concurrent.TimeoutException
 class OpenAiChatProvider(
     private val httpClient: PluginHttpClient,
     private val json: ObjectMapper,
-) : ChatProvider {
-    override fun complete(request: ChatCompletionRequest): String {
+) {
+    fun complete(request: ChatCompletionRequest): String {
         return try {
             completeInternal(request)
         } catch (failure: CancellationException) {

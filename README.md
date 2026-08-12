@@ -1,6 +1,6 @@
 # mieai-bot
 
-`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.6`，要求 Java 21、MieBot `1.0.6` 和 Plugin API `3.2.0`。
+`mieai-bot` 是 MieBot 的 Kotlin 群聊 AI 插件。当前插件版本为 `0.0.7`，要求 Java 21、MieBot `1.0.6` 和 Plugin API `3.2.0`。
 
 ## 构建
 
@@ -19,7 +19,7 @@ $env:JAVA_HOME='E:\JAVA\dragonwell-21.0.11.0.11+10-GA'
 .\gradlew.bat clean test pf4jSqliteTest jar --no-configuration-cache --no-daemon
 ```
 
-输出文件为 `build/libs/mieai-bot-0.0.6.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
+输出文件为 `build/libs/mieai-bot-0.0.7.jar`。也可以通过 `-PqqbotSdkRepository=<路径>` 指定其他 MieBot SDK 仓库。
 
 ## 安装
 
